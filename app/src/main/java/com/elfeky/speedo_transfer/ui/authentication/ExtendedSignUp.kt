@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -142,7 +143,7 @@ fun ExtendedSignUp(modifier: Modifier = Modifier) {
             value = country,
             onValueChange = { country = it },
             shape = RoundedCornerShape(7.dp),
-            label = { Text(text = "Select your country" , color = GreyFields) },
+            label = { Text(text = "Select your country", color = GreyFields) },
             modifier = modifier
                 .fillMaxWidth()
                 .padding(bottom = 4.dp),
@@ -163,10 +164,8 @@ fun ExtendedSignUp(modifier: Modifier = Modifier) {
         if (isSheetOpen) {
             ModalBottomSheet(sheetState = sheetState, onDismissRequest = { isSheetOpen = false }) {
                 ConutryItem(country = Country(R.drawable.egypt, "Egypt"))
-                ConutryItem(country = Country(R.drawable.egypt, "Egypt"))
-                ConutryItem(country = Country(R.drawable.egypt, "Egypt"))
-                ConutryItem(country = Country(R.drawable.egypt, "Egypt"))
-                ConutryItem(country = Country(R.drawable.egypt, "Egypt"))
+                ConutryItem(country = Country(R.drawable.united_states, "United States"))
+
 
             }
         }
@@ -194,7 +193,8 @@ fun ExtendedSignUp(modifier: Modifier = Modifier) {
 
                     Icon(
                         painter = painterResource(id = R.drawable.calender),
-                        contentDescription = "select a date "
+                        contentDescription = "select a date ",
+                        modifier = modifier.size(24.dp)
                     )
                 }
 
@@ -254,9 +254,14 @@ fun ConutryItem(modifier: Modifier = Modifier, country: Country) {
             modifier = modifier
                 .height(20.dp)
                 .background(Color.White)
+                .fillMaxWidth()
         ) {
-            Icon(painter = painterResource(id = country.picture), contentDescription = "Egypt")
-            Text(text = country.name)
+            Image(
+                painter = painterResource(id = country.picture),
+                contentDescription = "Egypt",
+                modifier = modifier.padding(start = 8.dp)
+            )
+            Text(text = country.name, modifier = modifier.padding(start = 8.dp))
 
         }
     }
@@ -265,7 +270,8 @@ fun ConutryItem(modifier: Modifier = Modifier, country: Country) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DatePickerChooser(onConfirm: (DatePickerState) -> Unit, onDismiss: () -> Unit) {
-    val datePickerState = rememberDatePickerState(initialSelectedDateMillis = System.currentTimeMillis())
+    val datePickerState =
+        rememberDatePickerState(initialSelectedDateMillis = System.currentTimeMillis())
     DatePickerDialog(onDismissRequest = {},
         confirmButton = {
             TextButton(onClick = { onConfirm(datePickerState) }) {
@@ -294,6 +300,6 @@ fun DatePickerChooser(onConfirm: (DatePickerState) -> Unit, onDismiss: () -> Uni
 @Composable
 private fun ExtendedSignUpPreview() {
     ExtendedSignUp()
-    
+
 
 }

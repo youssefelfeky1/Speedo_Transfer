@@ -1,6 +1,8 @@
 package com.elfeky.speedo_transfer.data.model
 
+import androidx.annotation.DrawableRes
+
 class Country(
-    val picture: Int,
+    @DrawableRes val picture: Int,
     val name: String
 )
