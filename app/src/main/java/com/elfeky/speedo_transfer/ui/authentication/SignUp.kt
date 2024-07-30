@@ -1,5 +1,6 @@
 package com.elfeky.speedo_transfer.ui.authentication
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,6 +23,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -37,6 +40,7 @@ import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.GreyText
+import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -61,7 +65,10 @@ fun SignUp(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(start = 32.dp, end = 32.dp, top = 32.dp),
+            .padding(start = 32.dp, end = 32.dp, top = 32.dp)
+            .background(
+                brush = Brush.verticalGradient(colors = listOf(Color.White, RoseBottomGradient))
+            ),
         verticalArrangement = Arrangement.Top
 
     ) {

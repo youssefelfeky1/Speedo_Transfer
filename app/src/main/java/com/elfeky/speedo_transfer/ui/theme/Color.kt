@@ -21,3 +21,5 @@ val BlackFieldColor = Color(0xFF3C3A37)
 val GreyText = Color(0xFF898886)
 
 val SignUpColor = Color(0XFF871E35)
+
+val GreyFields = Color (0XFFB0AFAE)
