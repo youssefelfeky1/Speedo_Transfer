@@ -13,3 +13,11 @@ val Pink40 = Color(0xFF7D5260)
 
 val RoseBottomGradient = Color(0xFFFFEAEE)
 val DarkRed = Color(0xFF871E35)
+
+val BlackText = Color (0xFF24221E)
+
+val BlackFieldColor = Color(0xFF3C3A37)
+
+val GreyText = Color(0xFF898886)
+
+val SignUpColor = Color(0XFF871E35)
