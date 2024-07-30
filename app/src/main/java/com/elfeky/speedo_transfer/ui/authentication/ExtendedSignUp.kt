@@ -294,5 +294,6 @@ fun DatePickerChooser(onConfirm: (DatePickerState) -> Unit, onDismiss: () -> Uni
 @Composable
 private fun ExtendedSignUpPreview() {
     ExtendedSignUp()
+    
 
 }

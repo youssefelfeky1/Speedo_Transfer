@@ -26,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -42,18 +41,14 @@ import com.elfeky.speedo_transfer.ui.authentication.components.PasswordTextField
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.BlackText
-import com.elfeky.speedo_transfer.ui.theme.GreyFields
 import com.elfeky.speedo_transfer.ui.theme.GreyText
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUp(modifier: Modifier = Modifier) {
+fun SignIn(modifier: Modifier = Modifier) {
 
-    var name by remember {
-        mutableStateOf("")
-    }
 
     var email by remember {
         mutableStateOf("")
@@ -101,30 +96,9 @@ fun SignUp(modifier: Modifier = Modifier) {
         Spacer(modifier = modifier.padding(32.dp))
 
 
-        Text(
-            text = "Full Name",
-            color = BlackFieldColor,
-            textAlign = TextAlign.Start,
-            modifier = modifier.padding(bottom = 4.dp)
-
-        )
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
-            shape = RoundedCornerShape(7.dp),
-            label = { Text(text = "Enter your Full Name" , color = GreyFields) },
-            modifier = Modifier.fillMaxWidth(),
-            trailingIcon = {
-                Icon(
-                    painter = painterResource(id = R.drawable.user_1),
-                    contentDescription = "profile icon"
-                )
-            }
-
-
-        )
-
         EmailTextField(email = email)
+        Spacer(modifier = modifier.padding(4.dp))
+
         PasswordTextField(password = password, isPasswordShown = isPasswordShown)
 
         Spacer(modifier = modifier.padding(12.dp))
@@ -139,14 +113,14 @@ fun SignUp(modifier: Modifier = Modifier) {
             colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
 
             ) {
-            Text(text = "Sign Up")
+            Text(text = "Sign In")
 
         }
 
         Row(modifier = modifier.padding(start = 32.dp)) {
-            Text(text = "Already have an account? ", color = GreyText)
+            Text(text = "Don’t have an account? ", color = GreyText)
             Text(
-                text = "Sign In",
+                text = "Sign Up",
                 color = SignUpColor,
                 textDecoration = TextDecoration.Underline
             )
@@ -162,8 +136,10 @@ fun SignUp(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun SignUpPreview() {
-    SignUp()
+private fun SignInPreview() {
+
+    SignIn()
+
 
 
 }
