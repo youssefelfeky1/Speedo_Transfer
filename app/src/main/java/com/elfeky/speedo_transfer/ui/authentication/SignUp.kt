@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,11 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,9 +33,9 @@ import androidx.compose.ui.unit.sp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.authentication.components.EmailTextField
 import com.elfeky.speedo_transfer.ui.authentication.components.PasswordTextField
-import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.BlackText
+import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
 import com.elfeky.speedo_transfer.ui.theme.GreyText
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
@@ -69,10 +63,10 @@ fun SignUp(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(start = 32.dp, end = 32.dp, top = 32.dp)
             .background(
                 brush = Brush.verticalGradient(colors = listOf(Color.White, RoseBottomGradient))
-            ),
+            )
+            .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.Top
 
     ) {
@@ -81,12 +75,12 @@ fun SignUp(modifier: Modifier = Modifier) {
             color = BlackText,
             fontSize = 24.sp,
             modifier = modifier
-                .padding(bottom = 20.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(top = 16.dp ,bottom = 20.dp),
             textAlign = TextAlign.Center
 
         )
-        Spacer(modifier = modifier.padding(20.dp))
+        Spacer(modifier = modifier.padding( 20.dp))
 
         Text(
             text = "Speedo Transfer",
@@ -112,7 +106,7 @@ fun SignUp(modifier: Modifier = Modifier) {
             value = name,
             onValueChange = { name = it },
             shape = RoundedCornerShape(7.dp),
-            label = { Text(text = "Enter your Full Name" , color = GreyFields) },
+            label = { Text(text = "Enter your Full Name", color = GreyFields) },
             modifier = Modifier.fillMaxWidth(),
             trailingIcon = {
                 Icon(
@@ -157,7 +151,6 @@ fun SignUp(modifier: Modifier = Modifier) {
 
 
 }
-
 
 
 @Preview(showBackground = true, showSystemUi = true)
