@@ -2,6 +2,7 @@ package com.elfeky.speedo_transfer.ui.authentication.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
@@ -57,7 +58,8 @@ fun PasswordTextField(modifier: Modifier = Modifier, password: String, isPasswor
             IconButton(onClick = { tempIsPasswordShown = !tempIsPasswordShown }) {
                 Icon(
                     painter = painterResource(id = id),
-                    contentDescription = "password icon"
+                    contentDescription = "password icon",
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }

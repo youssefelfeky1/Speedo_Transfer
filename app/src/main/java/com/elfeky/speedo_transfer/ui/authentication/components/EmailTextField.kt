@@ -2,6 +2,7 @@ package com.elfeky.speedo_transfer.ui.authentication.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
@@ -48,7 +49,8 @@ fun EmailTextField(modifier: Modifier = Modifier, email: String) {
         trailingIcon = {
             Icon(
                 painter = painterResource(id = R.drawable.email_1),
-                contentDescription = "email icon"
+                contentDescription = "email icon",
+                modifier = Modifier.size(24.dp)
             )
         }
 

@@ -59,7 +59,7 @@ fun SignIn(modifier: Modifier = Modifier) {
             .background(
                 brush = Brush.verticalGradient(colors = listOf(Color.White, RoseBottomGradient))
             )
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp, vertical = 36.dp),
         verticalArrangement = Arrangement.Top
 
     ) {

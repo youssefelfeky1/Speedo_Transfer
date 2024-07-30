@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -67,7 +68,7 @@ fun SignUp(modifier: Modifier = Modifier) {
             .background(
                 brush = Brush.verticalGradient(colors = listOf(Color.White, RoseBottomGradient))
             )
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp, vertical = 36.dp),
         verticalArrangement = Arrangement.Top
 
     ) {
@@ -112,7 +113,8 @@ fun SignUp(modifier: Modifier = Modifier) {
             trailingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.user_1),
-                    contentDescription = "profile icon"
+                    contentDescription = "profile icon",
+                    modifier = Modifier.size(24.dp)
                 )
             }
 

@@ -2,7 +2,6 @@ package com.elfeky.speedo_transfer.ui.authentication
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,14 +12,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.DatePickerState
-import androidx.compose.material3.DisplayMode
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -41,23 +38,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.data.model.Country
-import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.BlackText
+import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
-import com.elfeky.speedo_transfer.ui.theme.GreyText
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
-import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -87,10 +78,10 @@ fun ExtendedSignUp(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(start = 32.dp, end = 32.dp, top = 88.dp)
             .background(
                 brush = Brush.verticalGradient(colors = listOf(Color.White, RoseBottomGradient))
-            ),
+            )
+            .padding(horizontal = 16.dp, vertical = 36.dp),
         verticalArrangement = Arrangement.Top
 
     ) {
@@ -146,14 +137,15 @@ fun ExtendedSignUp(modifier: Modifier = Modifier) {
             label = { Text(text = "Select your country", color = GreyFields) },
             modifier = modifier
                 .fillMaxWidth()
-                .padding(bottom = 4.dp),
+                .padding(bottom = 8.dp),
 
             trailingIcon = {
                 IconButton(onClick = { isSheetOpen = true }) {
 
                     Icon(
                         painter = painterResource(id = R.drawable.chevron_down_1),
-                        contentDescription = "select a country "
+                        contentDescription = "select a country ",
+                        modifier = modifier.size(24.dp)
                     )
                 }
             }
