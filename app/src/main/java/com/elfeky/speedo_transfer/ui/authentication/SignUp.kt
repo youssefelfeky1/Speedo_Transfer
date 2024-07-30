@@ -1,4 +1,4 @@
-package com.elfeky.speedo_transfer.ui
+package com.elfeky.speedo_transfer.ui.authentication
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -113,62 +113,9 @@ fun SignUp(modifier: Modifier = Modifier) {
 
         )
 
+        EmailTextField(email = email)
+        PasswordTextField(password = password, isPasswordShown = isPasswordShown)
 
-        Text(
-            text = "Email",
-            color = BlackFieldColor,
-            textAlign = TextAlign.Start,
-            modifier = modifier.padding(vertical = 6.dp)
-
-
-        )
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
-            label = { Text(text = "Enter your email address") },
-            shape = RoundedCornerShape(7.dp),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            modifier = Modifier.fillMaxWidth(),
-            trailingIcon = {
-                Icon(
-                    painter = painterResource(id = R.drawable.email_1),
-                    contentDescription = "email icon"
-                )
-            }
-
-
-        )
-
-
-        Text(
-            text = "Password",
-            color = BlackFieldColor,
-            textAlign = TextAlign.Start,
-            modifier = modifier.padding(vertical = 6.dp)
-
-
-        )
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
-            label = { Text(text = "Enter your password ") },
-            shape = RoundedCornerShape(7.dp),
-            modifier = Modifier.fillMaxWidth(),
-            visualTransformation = if (isPasswordShown) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-
-            trailingIcon = {
-                val id = if (!isPasswordShown) R.drawable.open_eye else R.drawable.close_eye
-                IconButton(onClick = { isPasswordShown = !isPasswordShown }) {
-                    Icon(
-                        painter = painterResource(id = id),
-                        contentDescription = "password icon"
-                    )
-                }
-            }
-
-
-        )
         Spacer(modifier = modifier.padding(12.dp))
 
 
@@ -197,6 +144,83 @@ fun SignUp(modifier: Modifier = Modifier) {
 
     }
 
+
+}
+
+@Composable
+fun EmailTextField(modifier: Modifier = Modifier, email: String) {
+
+    var tempEmail by remember {
+        mutableStateOf(email)
+    }
+
+
+    Text(
+        text = "Email",
+        color = BlackFieldColor,
+        textAlign = TextAlign.Start,
+        modifier = modifier.padding(vertical = 6.dp)
+
+
+    )
+    OutlinedTextField(
+        value = tempEmail,
+        onValueChange = { tempEmail = it },
+        label = { Text(text = "Enter your email address") },
+        shape = RoundedCornerShape(7.dp),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+        modifier = Modifier.fillMaxWidth(),
+        trailingIcon = {
+            Icon(
+                painter = painterResource(id = R.drawable.email_1),
+                contentDescription = "email icon"
+            )
+        }
+
+
+    )
+
+
+}
+
+@Composable
+fun PasswordTextField(modifier: Modifier = Modifier, password: String, isPasswordShown: Boolean) {
+    var tempPassword by remember {
+        mutableStateOf(password)
+    }
+    var tempIsPasswordShown by remember {
+        mutableStateOf(isPasswordShown)
+    }
+
+    Text(
+        text = "Password",
+        color = BlackFieldColor,
+        textAlign = TextAlign.Start,
+        modifier = modifier.padding(vertical = 6.dp)
+
+
+    )
+    OutlinedTextField(
+        value = tempPassword,
+        onValueChange = { tempPassword = it },
+        label = { Text(text = "Enter your password ") },
+        shape = RoundedCornerShape(7.dp),
+        modifier = Modifier.fillMaxWidth(),
+        visualTransformation = if (tempIsPasswordShown) VisualTransformation.None else PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+
+        trailingIcon = {
+            val id = if (!tempIsPasswordShown) R.drawable.open_eye else R.drawable.close_eye
+            IconButton(onClick = { tempIsPasswordShown = !tempIsPasswordShown }) {
+                Icon(
+                    painter = painterResource(id = id),
+                    contentDescription = "password icon"
+                )
+            }
+        }
+
+
+    )
 
 }
 

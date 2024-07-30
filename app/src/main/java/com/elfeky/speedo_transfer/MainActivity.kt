@@ -25,7 +25,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.elfeky.speedo_transfer.ui.SignUp
+import com.elfeky.speedo_transfer.ui.authentication.SignUp
 import com.elfeky.speedo_transfer.ui.theme.Speedo_TransferTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,8 +34,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Speedo_TransferTheme {
-                SignUp()
 
+                SignUp()
             }
         }
     }
