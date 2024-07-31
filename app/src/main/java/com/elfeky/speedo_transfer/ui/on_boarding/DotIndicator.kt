@@ -13,13 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
+import com.elfeky.speedo_transfer.ui.theme.RedP75
 
 @Composable
 fun DotIndicator(
     totalDots: Int,
     currentIndex: Int,
     activeColor: Color = DarkRed,
-    inactiveColor: Color = Color.Gray
+    inactiveColor: Color = RedP75
 ) {
     Row(
         modifier = Modifier

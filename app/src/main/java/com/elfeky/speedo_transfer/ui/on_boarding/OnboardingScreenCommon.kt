@@ -83,7 +83,8 @@ fun OnboardingScreen(
         Text(
             text = title,
             style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
