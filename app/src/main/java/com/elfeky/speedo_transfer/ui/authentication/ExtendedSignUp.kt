@@ -260,7 +260,13 @@ fun ExtendedSignUp(
 
 
                 Button(
-                    onClick = { navController.navigate("Onboard") },
+                    onClick = {
+                        navController.navigate("Onboard") {
+                            popUpTo("ExtendedSignUp/{name}/{email}/{password}") {
+                                inclusive = true
+                            }
+                        }
+                    },
                     shape = RoundedCornerShape(7.dp),
                     modifier = modifier
                         .fillMaxWidth()
@@ -348,5 +354,5 @@ fun ButtomSheetContent(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun ExtendedSignUpPreview() {
-    ExtendedSignUp("","","",navController = rememberNavController())
+    ExtendedSignUp("", "", "", navController = rememberNavController())
 }

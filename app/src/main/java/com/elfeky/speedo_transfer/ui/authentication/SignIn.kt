@@ -67,7 +67,7 @@ fun SignIn(modifier: Modifier = Modifier,navController: NavController) {
 
     ) {
         Text(
-            text = "Sign Up",
+            text = "Sign In",
             color = BlackText,
             fontSize = 24.sp,
             modifier = modifier
@@ -104,7 +104,7 @@ fun SignIn(modifier: Modifier = Modifier,navController: NavController) {
 
 
         Button(
-            onClick = { navController.navigate("MainScreen") },
+            onClick = { navController.navigate("MainScreen") { popUpTo("SignIn") { inclusive = true } } },
             shape = RoundedCornerShape(7.dp),
             modifier = modifier
                 .fillMaxWidth()

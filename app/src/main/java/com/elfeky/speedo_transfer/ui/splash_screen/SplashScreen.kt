@@ -24,32 +24,25 @@ import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavController){
+fun SplashScreen(navController: NavController) {
     val scale = remember {
         Animatable(0f)
     }
-    LaunchedEffect(key1 = true){
-        scale.animateTo(
-            targetValue = 0.8f,
-            animationSpec = tween(
-                durationMillis = 700,
-                easing = {
-                    OvershootInterpolator(2f).getInterpolation(it)
-                }
-            )
-        )
+    LaunchedEffect(key1 = true) {
+        scale.animateTo(targetValue = 0.8f, animationSpec = tween(durationMillis = 700, easing = {
+            OvershootInterpolator(2f).getInterpolation(it)
+        }))
         delay(3000L)
-        navController.navigate("signIn")
+        navController.navigate("signIn") { popUpTo("SplashScreen") { inclusive = true } }
     }
 
     Box(
-        modifier =Modifier
+        modifier = Modifier
             .fillMaxSize()
-            .background(DarkRed),
-        contentAlignment = Alignment.Center
-    ){
+            .background(DarkRed), contentAlignment = Alignment.Center
+    ) {
         Text(
-            text ="Speedo Transfer",
+            text = "Speedo Transfer",
             fontSize = 36.sp,
             color = Color.White,
             fontWeight = FontWeight.Bold,

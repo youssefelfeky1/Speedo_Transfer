@@ -47,7 +47,7 @@ import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 
 @Composable
-fun SignUp(modifier: Modifier = Modifier,navController: NavController) {
+fun SignUp(modifier: Modifier = Modifier, navController: NavController) {
 
     var name by remember {
         mutableStateOf("")
@@ -84,7 +84,7 @@ fun SignUp(modifier: Modifier = Modifier,navController: NavController) {
             textAlign = TextAlign.Center
 
         )
-        Spacer(modifier = modifier.padding( 20.dp))
+        Spacer(modifier = modifier.padding(20.dp))
 
         Text(
             text = "Speedo Transfer",
@@ -123,10 +123,10 @@ fun SignUp(modifier: Modifier = Modifier,navController: NavController) {
 
         )
 
-        EmailTextField{
+        EmailTextField {
             email = it
         }
-        PasswordTextField( isPasswordShown = isPasswordShown ){
+        PasswordTextField(isPasswordShown = isPasswordShown) {
             password = it
         }
 
@@ -135,9 +135,13 @@ fun SignUp(modifier: Modifier = Modifier,navController: NavController) {
 
         Button(
             onClick = {
-                Log.d("test","$name/$email/$password")
-                navController.navigate("ExtendedSignUp/$name/$email/$password")
-                      },
+                Log.d("test", "$name/$email/$password")
+                navController.navigate("ExtendedSignUp/$name/$email/$password") {
+                    popUpTo("SignUp") {
+                        inclusive = true
+                    }
+                }
+            },
             shape = RoundedCornerShape(7.dp),
             modifier = modifier
                 .fillMaxWidth()
