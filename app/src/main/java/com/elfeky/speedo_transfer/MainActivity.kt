@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Speedo_TransferTheme {
 
-                SignUp()
+                ExtendedSignUp()
             }
         }
     }
