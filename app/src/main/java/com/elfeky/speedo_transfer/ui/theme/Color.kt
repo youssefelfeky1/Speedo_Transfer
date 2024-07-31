@@ -13,3 +13,5 @@ val Pink40 = Color(0xFF7D5260)
 
 val RoseBottomGradient = Color(0xFFFFEAEE)
 val DarkRed = Color(0xFF871E35)
+val Gray = Color(0xFF7C7A78)
+val YellowTopGradient = Color(0xFFFFF8E7)
