@@ -24,10 +24,10 @@ import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
 
 @Composable
-fun EmailTextField(modifier: Modifier = Modifier, email: String) {
+fun EmailTextField(modifier: Modifier = Modifier, onChange: (String) -> Unit) {
 
-    var tempEmail by remember {
-        mutableStateOf(email)
+    var textFieldEmail by remember {
+        mutableStateOf("")
     }
 
 
@@ -40,9 +40,12 @@ fun EmailTextField(modifier: Modifier = Modifier, email: String) {
 
     )
     OutlinedTextField(
-        value = tempEmail,
-        onValueChange = { tempEmail = it },
-        label = { Text(text = "Enter your email address" , color = GreyFields) },
+        value = textFieldEmail,
+        onValueChange = {
+            textFieldEmail = it
+            onChange(it)
+        },
+        label = { Text(text = "Enter your email address", color = GreyFields) },
         shape = RoundedCornerShape(7.dp),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         modifier = Modifier.fillMaxWidth(),

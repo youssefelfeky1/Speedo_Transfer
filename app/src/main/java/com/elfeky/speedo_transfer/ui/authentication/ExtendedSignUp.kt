@@ -53,6 +53,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.data.model.Country
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
@@ -68,7 +70,13 @@ import java.util.Locale
 @SuppressLint("CoroutineCreationDuringComposition")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExtendedSignUp(modifier: Modifier = Modifier) {
+fun ExtendedSignUp(
+    name: String,
+    email: String,
+    password: String,
+    modifier: Modifier = Modifier,
+    navController: NavController
+) {
     var country by remember {
         mutableStateOf("")
     }
@@ -94,9 +102,13 @@ fun ExtendedSignUp(modifier: Modifier = Modifier) {
         scaffoldState = scaffoldState,
         sheetShape = RoundedCornerShape(36.dp),
         sheetPeekHeight = 120.dp
-        ) {innerPadding->
+    ) { innerPadding ->
 
-        Box(modifier = modifier.fillMaxSize().padding(innerPadding)) {
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
             Column(
                 modifier = modifier
                     .fillMaxSize()
@@ -248,7 +260,7 @@ fun ExtendedSignUp(modifier: Modifier = Modifier) {
 
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.navigate("Onboard") },
                     shape = RoundedCornerShape(7.dp),
                     modifier = modifier
                         .fillMaxWidth()
@@ -336,7 +348,5 @@ fun ButtomSheetContent(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun ExtendedSignUpPreview() {
-    ExtendedSignUp()
-
-
+    ExtendedSignUp("","","",navController = rememberNavController())
 }

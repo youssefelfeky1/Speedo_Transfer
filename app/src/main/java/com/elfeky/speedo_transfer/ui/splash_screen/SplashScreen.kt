@@ -39,7 +39,7 @@ fun SplashScreen(navController: NavController){
             )
         )
         delay(3000L)
-        navController.navigate("signIn_screen")
+        navController.navigate("signIn")
     }
 
     Box(

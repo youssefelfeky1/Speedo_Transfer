@@ -1,6 +1,7 @@
 package com.elfeky.speedo_transfer.ui.authentication
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,6 +29,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.authentication.components.EmailTextField
 import com.elfeky.speedo_transfer.ui.authentication.components.PasswordTextField
 import com.elfeky.speedo_transfer.ui.theme.BlackText
@@ -38,7 +41,7 @@ import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignIn(modifier: Modifier = Modifier) {
+fun SignIn(modifier: Modifier = Modifier,navController: NavController) {
 
 
     var email by remember {
@@ -88,16 +91,20 @@ fun SignIn(modifier: Modifier = Modifier) {
         Spacer(modifier = modifier.padding(32.dp))
 
 
-        EmailTextField(email = email)
+        EmailTextField{
+            email = it
+        }
         Spacer(modifier = modifier.padding(4.dp))
+        PasswordTextField( isPasswordShown = isPasswordShown ){
+            password = it
+        }
 
-        PasswordTextField(password = password, isPasswordShown = isPasswordShown)
 
         Spacer(modifier = modifier.padding(12.dp))
 
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { navController.navigate("MainScreen") },
             shape = RoundedCornerShape(7.dp),
             modifier = modifier
                 .fillMaxWidth()
@@ -115,7 +122,8 @@ fun SignIn(modifier: Modifier = Modifier) {
             Text(
                 text = "Sign Up",
                 color = SignUpColor,
-                textDecoration = TextDecoration.Underline
+                textDecoration = TextDecoration.Underline,
+                modifier = Modifier.clickable { navController.navigate("SignUp") }
             )
         }
 
@@ -130,7 +138,7 @@ fun SignIn(modifier: Modifier = Modifier) {
 @Composable
 private fun SignInPreview() {
 
-    SignIn()
+    SignIn(navController = rememberNavController())
 
 
 }

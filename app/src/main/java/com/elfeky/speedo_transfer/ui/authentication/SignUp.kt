@@ -1,6 +1,8 @@
 package com.elfeky.speedo_transfer.ui.authentication
 
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -32,6 +33,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.authentication.components.EmailTextField
 import com.elfeky.speedo_transfer.ui.authentication.components.PasswordTextField
@@ -43,9 +46,8 @@ import com.elfeky.speedo_transfer.ui.theme.GreyText
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUp(modifier: Modifier = Modifier) {
+fun SignUp(modifier: Modifier = Modifier,navController: NavController) {
 
     var name by remember {
         mutableStateOf("")
@@ -78,7 +80,7 @@ fun SignUp(modifier: Modifier = Modifier) {
             fontSize = 24.sp,
             modifier = modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp ,bottom = 20.dp),
+                .padding(top = 16.dp, bottom = 20.dp),
             textAlign = TextAlign.Center
 
         )
@@ -121,14 +123,21 @@ fun SignUp(modifier: Modifier = Modifier) {
 
         )
 
-        EmailTextField(email = email)
-        PasswordTextField(password = password, isPasswordShown = isPasswordShown)
+        EmailTextField{
+            email = it
+        }
+        PasswordTextField( isPasswordShown = isPasswordShown ){
+            password = it
+        }
 
         Spacer(modifier = modifier.padding(12.dp))
 
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                Log.d("test","$name/$email/$password")
+                navController.navigate("ExtendedSignUp/$name/$email/$password")
+                      },
             shape = RoundedCornerShape(7.dp),
             modifier = modifier
                 .fillMaxWidth()
@@ -146,7 +155,8 @@ fun SignUp(modifier: Modifier = Modifier) {
             Text(
                 text = "Sign In",
                 color = SignUpColor,
-                textDecoration = TextDecoration.Underline
+                textDecoration = TextDecoration.Underline,
+                modifier = Modifier.clickable { navController.navigate("SignIn") }
             )
         }
 
@@ -160,7 +170,7 @@ fun SignUp(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun SignUpPreview() {
-    SignUp()
+    SignUp(navController = rememberNavController())
 
 
 }

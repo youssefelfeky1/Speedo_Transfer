@@ -7,9 +7,10 @@ import com.elfeky.speedo_transfer.R
 
 
 @Composable
-fun AmountScreen(navController: NavController) {
+fun AmountScreen(navController: NavController,hostNavController: NavController) {
     OnboardingScreen(
         navController = navController,
+        hostNavController = hostNavController,
         title = "Amount",
         description = "Send money fast with simple steps. Create account, Confirmation, Payment. Simple.",
         imageResId = R.drawable.amont,
@@ -20,9 +21,10 @@ fun AmountScreen(navController: NavController) {
 }
 
 @Composable
-fun ConfirmationScreen(navController: NavController) {
+fun ConfirmationScreen(navController: NavController,hostNavController: NavController) {
     OnboardingScreen(
         navController = navController,
+        hostNavController = hostNavController,
         title = "Confirmation",
         description = "Transfer funds instantly to friends and family worldwide, strong shield protecting a money.",
         imageResId = R.drawable.confirmation,
@@ -33,13 +35,14 @@ fun ConfirmationScreen(navController: NavController) {
 }
 
 @Composable
-fun PaymentScreen(navController: NavController) {
+fun PaymentScreen(navController: NavController,hostNavController: NavController) {
     OnboardingScreen(
         navController = navController,
+        hostNavController = hostNavController,
         title = "Payment",
         description = "Enjoy peace of mind with our secure platform. Transfer funds instantly to friends.",
         imageResId = R.drawable.payment,
-        onNextClick = { },
+        onNextClick = { hostNavController.navigate("MainScreen")},
         totalScreens = 3,
         currentIndex = 2
     )

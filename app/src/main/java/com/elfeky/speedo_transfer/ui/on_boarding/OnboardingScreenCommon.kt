@@ -37,6 +37,7 @@ import com.elfeky.speedo_transfer.ui.theme.DarkRed
 @Composable
 fun OnboardingScreen(
     navController: NavController,
+    hostNavController: NavController,
     title: String,
     description: String,
     @DrawableRes imageResId: Int,
@@ -64,7 +65,9 @@ fun OnboardingScreen(
             text = "Skip",
             fontSize = 16.sp,
             modifier = Modifier
-                .clickable {}
+                .clickable {
+                    hostNavController.navigate("MainScreen")
+                }
                 .padding(top = 14.dp)
                 .align(alignment = Alignment.End),
             style = MaterialTheme.typography.titleSmall
@@ -116,6 +119,7 @@ private fun OnboardingScreenPreview() {
 
     OnboardingScreen(
         navController = navController,
+        hostNavController = navController,
         title = "Amount",
         description = "Send money fast with simple steps. Create account, Confirmation, Payment. Simple.",
         imageResId = R.drawable.amont,

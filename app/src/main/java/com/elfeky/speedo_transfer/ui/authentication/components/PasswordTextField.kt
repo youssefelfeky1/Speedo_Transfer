@@ -16,7 +16,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -28,9 +27,9 @@ import com.elfeky.speedo_transfer.ui.theme.GreyFields
 
 
 @Composable
-fun PasswordTextField(modifier: Modifier = Modifier, password: String, isPasswordShown: Boolean) {
+fun PasswordTextField(modifier: Modifier = Modifier, isPasswordShown: Boolean , onChange:(String)->Unit) {
     var tempPassword by remember {
-        mutableStateOf(password)
+        mutableStateOf("")
     }
     var tempIsPasswordShown by remember {
         mutableStateOf(isPasswordShown)
@@ -46,7 +45,9 @@ fun PasswordTextField(modifier: Modifier = Modifier, password: String, isPasswor
     )
     OutlinedTextField(
         value = tempPassword,
-        onValueChange = { tempPassword = it },
+        onValueChange = { tempPassword = it
+                        onChange(tempPassword)
+                        },
         label = { Text(text = "Enter your password " , color = GreyFields) },
         shape = RoundedCornerShape(7.dp),
         modifier = Modifier.fillMaxWidth(),
