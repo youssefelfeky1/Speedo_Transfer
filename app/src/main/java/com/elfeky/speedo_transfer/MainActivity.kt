@@ -18,8 +18,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Speedo_TransferTheme {
-//                AppNavigation()
-                ProfileScreen()
+               AppNavigation()
+                //ProfileScreen()
 
             }
         }

@@ -16,9 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.elfeky.speedo_transfer.ui.main_screen.more.components.AlertDialogLogout
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.LogoutSection
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.MoreNavigationSection
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.TopAppBarSection
+import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 @Composable
 fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
@@ -28,7 +30,7 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color.White,
+                        YellowTopGradient,
                         Color(0xFFFFEAEE)
                     )
                 )
@@ -37,11 +39,16 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
+
         TopAppBarSection("More")
+
         Spacer(modifier = Modifier.height(32.dp))
+
         MoreNavigationSection(navController)
+
+
         LogoutSection(onClick = {
-            // dialog
+            //AlertDialogLogout()
         })
     }
 

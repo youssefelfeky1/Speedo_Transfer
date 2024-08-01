@@ -2,8 +2,10 @@ package com.elfeky.speedo_transfer.ui.main_screen.transfer
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,9 +17,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,15 +38,35 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
+import com.elfeky.speedo_transfer.data.model.Recipient
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.AmountSection
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.FavouriteBottomSheet
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.ProgressSection
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
+import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("RememberReturnType")
 @Composable
 fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) {
+    val stageNumber = remember {
+        mutableStateOf(1)
+    }
+    val amount = remember{
+        mutableStateOf("")
+    }
+    val recipientName = remember {
+        mutableStateOf("")
+    }
+    val recipientAccount = remember {
+        mutableStateOf("")
+    }
+    var showBottomSheet = remember {
+        mutableStateOf(false)
+    }
+    val sheetState = rememberModalBottomSheetState()
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -51,21 +75,16 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
                     listOf(YellowTopGradient, RoseBottomGradient)
                 )
             )
-            .padding(16.dp)
+            .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState()),
     ) {
-        val stageNumber = remember {
-            mutableStateOf(1)
-        }
-        val recipientName = remember {
-            mutableStateOf("")
-        }
-        val recipientAccount = remember {
-            mutableStateOf("")
-        }
-
         TransferTopAppBar {
-            navController.popBackStack()
+            if (stageNumber.value == 1) {
+                navController.popBackStack()
+            } else {
+                stageNumber.value -= 1
+            }
+
         }
         Spacer(modifier = Modifier.height(24.dp))
         ProgressSection(stageNumber = stageNumber)
@@ -73,11 +92,13 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
         when (stageNumber.value) {
             1 -> {
                 AmountSection(
+                    amount = amount,
                     recipientName = recipientName,
                     recipientAccount = recipientAccount,
                     onContinue = {
                         stageNumber.value += 1
-                    }
+                    },
+                    showBottomSheet = showBottomSheet
                 )
             }
 
@@ -85,9 +106,50 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
             3 -> {}
         }
 
-
         Spacer(modifier = Modifier.height(120.dp))
     }
+
+    if (showBottomSheet.value) {
+        ModalBottomSheet(
+            onDismissRequest = { showBottomSheet.value = false },
+            sheetState = sheetState
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.favorite_1),
+                    contentDescription = "Favourite",
+                    tint = RedP300,
+                    modifier = Modifier
+                        .padding(end = 4.dp)
+                        .size(20.dp)
+                )
+                Text(
+                    text = "Favourite List",
+                    fontSize = 20.sp,
+                    color = RedP300,
+                    modifier = Modifier.padding(end = 4.dp)
+                )
+            }
+
+            FavouriteBottomSheet(
+                favouriteRecipients = listOf(
+                    Recipient("Youssef Elfeky","01002757952"),
+                    Recipient("Philip Lackner","01234357945"),
+                ),
+                onItemClick = {
+                    recipientName.value = it.recipientName
+                    recipientAccount.value = it.recipientAccount
+                    showBottomSheet.value = false
+                }
+                )
+        }
+    }
+
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -124,7 +186,7 @@ fun TransferTopAppBar(modifier: Modifier = Modifier, onBackClick: () -> Unit) {
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun TransferScreenPreview() {
     TransferScreen(navController = rememberNavController())

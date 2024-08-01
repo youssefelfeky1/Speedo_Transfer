@@ -37,6 +37,12 @@ import com.elfeky.speedo_transfer.ui.main_screen.transactions.TransactionsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferScreen
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.Gray
+import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
+import com.elfeky.speedo_transfer.util.Constants.HOME
+import com.elfeky.speedo_transfer.util.Constants.MORE
+import com.elfeky.speedo_transfer.util.Constants.MY_CARDS
+import com.elfeky.speedo_transfer.util.Constants.TRANSACTIONS
+import com.elfeky.speedo_transfer.util.Constants.TRANSFER
 
 @Composable
 fun MainNavigation(modifier: Modifier = Modifier) {
@@ -50,24 +56,24 @@ fun MainNavigation(modifier: Modifier = Modifier) {
 
         NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = HOME,
         ) {
-            composable("Home") {
+            composable(HOME) {
                 HomeScreen(navController)
             }
-            composable("Transfer") {
+            composable(TRANSFER) {
                 TransferScreen(navController)
             }
-            composable("Transactions") {
+            composable(TRANSACTIONS) {
                 TransactionsScreen(navController)
             }
-            composable("My cards") {
+            composable(MY_CARDS) {
                 MyCardsScreen(navController)
             }
-            composable("More") {
+            composable(MORE) {
                 MoreScreen(navController)
             }
-            composable("Favourites") {
+            composable(FAVOURITES) {
                 FavouriteScreen(navController)
             }
 
