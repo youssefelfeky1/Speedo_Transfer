@@ -56,6 +56,10 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
     var isPasswordShown by remember {
         mutableStateOf(false)
     }
+    var validPassword by remember {
+        mutableStateOf(false)
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -94,12 +98,14 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
             email = it
         }
         Spacer(modifier = modifier.height(4.dp))
-        PasswordTextField(isPasswordShown = isPasswordShown) {
-            password = it
-        }
+
+        PasswordTextField(
+            isPasswordShown = isPasswordShown,
+            onChange = { password = it },
+            isPasswordValid = { validPassword = it })
 
 
-        Spacer(modifier = modifier.height(32.dp))
+        Spacer(modifier = modifier.height(28.dp))
 
 
         Button(
@@ -116,8 +122,9 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
                 .height(54.dp)
                 .padding(bottom = 8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
+            enabled = email.isNotBlank() && password.isNotBlank() && validPassword
 
-            ) {
+        ) {
             Text(text = "Sign In")
 
         }
