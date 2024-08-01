@@ -131,7 +131,7 @@ fun EditProfile(modifier: Modifier = Modifier) {
             enabled = name.isNotBlank() && email.isNotBlank() && date.isNotBlank() && countryName.isNotBlank()
 
         ) {
-            Text(text = "Continue")
+            Text(text = "Save")
 
         }
 

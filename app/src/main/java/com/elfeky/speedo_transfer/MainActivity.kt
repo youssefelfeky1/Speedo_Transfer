@@ -20,10 +20,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Speedo_TransferTheme {
 //               AppNavigation()
-                //ProfileScreen()
 //                ExtendedSignUp(name = "", email = "", password = "", navController = rememberNavController())
                 EditProfile()
-
             }
         }
     }
