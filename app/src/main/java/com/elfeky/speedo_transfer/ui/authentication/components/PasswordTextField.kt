@@ -8,6 +8,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,8 +25,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
+import com.elfeky.speedo_transfer.ui.theme.GrayG10
 import com.elfeky.speedo_transfer.ui.theme.GrayG70
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
+import com.elfeky.speedo_transfer.ui.theme.RedP300
 
 
 @Composable
@@ -64,6 +67,14 @@ fun PasswordTextField(
             isPasswordValid(passwordConstraintsText == "your password is a strong password \u2714")
         },
         label = { Text(text = "Enter your password ", color = GreyFields) },
+        maxLines = 1,
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = RedP300,
+            unfocusedBorderColor = GrayG70,
+            unfocusedContainerColor = GrayG10,
+            focusedContainerColor = GrayG10,
+            focusedLabelColor = RedP300
+        ),
         shape = RoundedCornerShape(7.dp),
         modifier = Modifier.fillMaxWidth(),
         visualTransformation = if (tempIsPasswordShown) VisualTransformation.None else PasswordVisualTransformation(),

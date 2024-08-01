@@ -20,13 +20,13 @@ import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.GrayG200
 
 @Composable
-fun LogoutSection(onClick: () -> Unit) {
+fun LogoutSection(onClick:  () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
             .clickable {
-                onClick
+                //onClick()
             },
         verticalAlignment = Alignment.CenterVertically
     ) {

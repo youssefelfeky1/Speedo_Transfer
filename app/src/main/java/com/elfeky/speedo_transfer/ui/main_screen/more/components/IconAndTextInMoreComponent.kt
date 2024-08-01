@@ -46,12 +46,12 @@ fun MoreNavigationSection(navController: NavController) {
 }
 
 @Composable
-fun IconAndTextInMoreComponent(@DrawableRes icon: Int, text: String, onClick: () -> Unit) {
+fun IconAndTextInMoreComponent(@DrawableRes icon: Int, text: String,  onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
-            .clickable { onClick },
+            .clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -72,7 +72,9 @@ fun IconAndTextInMoreComponent(@DrawableRes icon: Int, text: String, onClick: ()
         Icon(
             painter = painterResource(id = R.drawable.chevron),
             contentDescription = "website",
-            tint = GrayG200
+            tint = GrayG200,
+            modifier = Modifier
+                .clickable { onClick() },
         )
     }
 }

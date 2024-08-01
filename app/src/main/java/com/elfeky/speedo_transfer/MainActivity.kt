@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.navigation.AppNavigation
 import com.elfeky.speedo_transfer.ui.authentication.ExtendedSignUp
+import com.elfeky.speedo_transfer.ui.main_screen.more.profile.ProfileScreen
 import com.elfeky.speedo_transfer.ui.on_boarding.OnboardingNavigation
 import com.elfeky.speedo_transfer.ui.theme.Speedo_TransferTheme
 
@@ -17,7 +18,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Speedo_TransferTheme {
-                AppNavigation()
+               AppNavigation()
+                //ProfileScreen()
 
             }
         }

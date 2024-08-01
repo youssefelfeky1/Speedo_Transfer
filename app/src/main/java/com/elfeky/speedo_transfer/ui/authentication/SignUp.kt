@@ -17,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -42,8 +43,11 @@ import com.elfeky.speedo_transfer.ui.authentication.components.passwordConstrain
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
+import com.elfeky.speedo_transfer.ui.theme.GrayG10
+import com.elfeky.speedo_transfer.ui.theme.GrayG70
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
 import com.elfeky.speedo_transfer.ui.theme.GreyText
+import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 
@@ -115,6 +119,14 @@ fun SignUp(modifier: Modifier = Modifier, navController: NavController) {
             value = name,
             onValueChange = { name = it },
             shape = RoundedCornerShape(7.dp),
+            maxLines = 1,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = RedP300,
+                unfocusedBorderColor = GrayG70,
+                unfocusedContainerColor = GrayG10,
+                focusedContainerColor = GrayG10,
+                focusedLabelColor = RedP300
+            ),
             label = { Text(text = "Enter your Full Name", color = GreyFields) },
             modifier = Modifier.fillMaxWidth(),
             trailingIcon = {
