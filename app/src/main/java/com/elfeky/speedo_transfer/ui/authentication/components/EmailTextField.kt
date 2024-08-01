@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
+import com.elfeky.speedo_transfer.ui.theme.GrayG70
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
 
 @Composable
@@ -53,7 +54,8 @@ fun EmailTextField(modifier: Modifier = Modifier, onChange: (String) -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.email_1),
                 contentDescription = "email icon",
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(24.dp),
+                tint = GrayG70
             )
         }
 

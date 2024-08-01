@@ -2,7 +2,6 @@ package com.elfeky.speedo_transfer.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavArgument
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,7 +12,6 @@ import com.elfeky.speedo_transfer.ui.authentication.SignIn
 import com.elfeky.speedo_transfer.ui.authentication.SignUp
 import com.elfeky.speedo_transfer.ui.main_screen.MainScreen
 import com.elfeky.speedo_transfer.ui.on_boarding.OnboardingNavigation
-import com.elfeky.speedo_transfer.ui.on_boarding.OnboardingScreen
 import com.elfeky.speedo_transfer.ui.splash_screen.SplashScreen
 
 @Composable
@@ -49,10 +47,11 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         }
         composable("Onboard") {
             val navController2 = rememberNavController()
-            OnboardingNavigation(navController = navController2,navController)
+            OnboardingNavigation(navController = navController2, navController)
         }
-        composable("MainScreen"){
+        composable("MainScreen") {
             MainScreen()
         }
+
     }
 }
