@@ -1,5 +1,7 @@
 package com.elfeky.speedo_transfer.ui.main_screen.more.components
 
+import android.content.Intent
+import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -15,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,9 +29,13 @@ import com.elfeky.speedo_transfer.ui.theme.GrayG40
 
 @Composable
 fun MoreNavigationSection(navController: NavController) {
+    val context = LocalContext.current
     IconAndTextInMoreComponent(R.drawable.website_1, "Transfer From Website", onClick = {
 
-        // link to website
+        val webIntent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse("https://www.banquemisr.com/")
+        }
+        context.startActivity(webIntent)
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.favorite_1, "Favourites", onClick = {
@@ -36,11 +43,11 @@ fun MoreNavigationSection(navController: NavController) {
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.user, "Profile", onClick = {
-       // navController.navigate("Profile")
+       navController.navigate("Profile")
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.support_1, "Help", onClick = {
-        // bottomSheet
+        //  bottom sheet
     })
     HorizontalDivider(color = GrayG40)
 }

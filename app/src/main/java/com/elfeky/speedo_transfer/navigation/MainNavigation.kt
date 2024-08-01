@@ -32,6 +32,7 @@ import com.elfeky.speedo_transfer.data.model.BottomNavigationItem
 import com.elfeky.speedo_transfer.ui.main_screen.home.HomeScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.MoreScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.FavouriteScreen
+import com.elfeky.speedo_transfer.ui.main_screen.more.profile.ProfileScreen
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.MyCardsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transactions.TransactionsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferScreen
@@ -69,6 +70,9 @@ fun MainNavigation(modifier: Modifier = Modifier) {
             }
             composable("Favourites") {
                 FavouriteScreen(navController)
+            }
+            composable("Profile") {
+                ProfileScreen()
             }
 
 
