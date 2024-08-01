@@ -15,8 +15,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -27,9 +28,11 @@ import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -43,6 +46,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -80,228 +84,407 @@ fun ExtendedSignUp(
     var country by remember {
         mutableStateOf("")
     }
-
-    var scaffoldState = // TODO hide the bottom sheet
-        rememberBottomSheetScaffoldState(
-//            bottomSheetState = rememberStandardBottomSheetState(
-//                initialValue = SheetValue.Hidden
-//            )
-        )
-
-
     var date by remember {
         mutableStateOf("DD/MM/YYY")
     }
     var isDatePickerShown by remember {
         mutableStateOf(false)
     }
-    var scope = rememberCoroutineScope()
+    var isBottomSheetVisible by remember { mutableStateOf(false) }
+    var state = rememberModalBottomSheetState()
 
-    BottomSheetScaffold(
-        sheetContent = { ButtomSheetContent() },
-        scaffoldState = scaffoldState,
-        sheetShape = RoundedCornerShape(36.dp),
-        sheetPeekHeight = 120.dp
-    ) { innerPadding ->
 
-        Box(
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.White,
+                        RoseBottomGradient
+                    )
+                )
+            )
+            .padding(horizontal = 16.dp, vertical = 36.dp),
+        verticalArrangement = Arrangement.Top
+
+    ) {
+
+
+        Spacer(modifier = modifier.padding(20.dp))
+
+        Text(
+            text = "Speedo Transfer",
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            color = BlackText,
+            modifier = modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
+
+
+        )
+        Spacer(modifier = modifier.padding(28.dp))
+
+        Text(
+            text = "Welcome to Banque Misr!",
+            color = BlackText,
             modifier = modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            Column(
-                modifier = modifier
-                    .fillMaxSize()
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.White,
-                                RoseBottomGradient
-                            )
-                        )
+                .padding(bottom = 6.dp)
+                .fillMaxWidth(),
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            textAlign = TextAlign.Center
+
+        )
+        Spacer(modifier = modifier.padding(6.dp))
+
+
+        Text(
+            text = "Let’s Complete your Profile",
+            color = BlackFieldColor,
+            modifier = modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontSize = 16.sp,
+
+
+            )
+        Spacer(modifier = modifier.padding(16.dp))
+
+        Text(text = "Country", color = BlackFieldColor, fontSize = 16.sp)
+
+
+
+
+
+        OutlinedTextField(
+            value = country,
+            onValueChange = { country = it },
+            enabled = false,
+            readOnly = true,
+            colors = OutlinedTextFieldDefaults.colors(disabledBorderColor = GreyFields),
+            label = { Text(text = "Select your country", color = GreyFields) },
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp)
+                .clickable {
+                    isBottomSheetVisible = true
+                },
+
+            trailingIcon = {
+                IconButton(onClick = {
+                    isBottomSheetVisible = true
+                }) {
+
+                    Icon(
+                        painter = painterResource(id = R.drawable.chevron_down_1),
+                        contentDescription = "select a country ",
+                        modifier = modifier.size(24.dp)
                     )
-                    .padding(horizontal = 16.dp, vertical = 36.dp),
-                verticalArrangement = Arrangement.Top
-
-            ) {
+                }
+            }
 
 
-                Spacer(modifier = modifier.padding(20.dp))
-
-                Text(
-                    text = "Speedo Transfer",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
-                    color = BlackText,
-                    modifier = modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center
+        )
 
 
-                )
-                Spacer(modifier = modifier.padding(28.dp))
 
-                Text(
-                    text = "Welcome to Banque Misr!",
-                    color = BlackText,
-                    modifier = modifier
-                        .padding(bottom = 6.dp)
-                        .fillMaxWidth(),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
-                    textAlign = TextAlign.Center
+        Text(
+            text = "Date Of Brith",
+            color = BlackFieldColor,
+            fontSize = 16.sp,
+            modifier = modifier.padding(bottom = 4.dp)
+        )
 
-                )
-                Spacer(modifier = modifier.padding(6.dp))
+        OutlinedTextField(
+            value = date,
+            enabled = false,
+            textStyle = TextStyle(color = GreyFields),
+            colors = OutlinedTextFieldDefaults.colors(disabledBorderColor = GreyFields),
+            onValueChange = { date = it },
+            shape = RoundedCornerShape(7.dp),
+            //            label = { Text(text = date  , color = GreyFields) },
+            modifier = modifier
+                .fillMaxWidth(),
+            readOnly = true,
 
+            trailingIcon = {
 
-                Text(
-                    text = "Let’s Complete your Profile",
-                    color = BlackFieldColor,
-                    modifier = modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    fontSize = 16.sp,
+                IconButton(onClick = { isDatePickerShown = true }) {
 
-
+                    Icon(
+                        painter = painterResource(id = R.drawable.calender),
+                        contentDescription = "select a date ",
+                        modifier = modifier.size(24.dp)
                     )
-                Spacer(modifier = modifier.padding(16.dp))
-
-                Text(text = "Country", color = BlackFieldColor, fontSize = 16.sp)
-
-
-
-
-                OutlinedTextField(
-                    value = country,
-                    onValueChange = { country = it },
-                    enabled = false,
-                    readOnly = true,
-                    colors = OutlinedTextFieldDefaults.colors(disabledBorderColor = GreyFields),
-                    label = { Text(text = "Select your country", color = GreyFields) },
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 8.dp)
-                        .clickable {
-                            scope.launch { scaffoldState.bottomSheetState.expand() }
-                        },
-
-                    trailingIcon = {
-                        IconButton(onClick = { scope.launch { scaffoldState.bottomSheetState.expand() } }) {
-
-                            Icon(
-                                painter = painterResource(id = R.drawable.chevron_down_1),
-                                contentDescription = "select a country ",
-                                modifier = modifier.size(24.dp)
-                            )
-                        }
-                    }
-
-
-                )
-
-
-
-                Text(
-                    text = "Date Of Brith",
-                    color = BlackFieldColor,
-                    fontSize = 16.sp,
-                    modifier = modifier.padding(bottom = 4.dp)
-                )
-
-                OutlinedTextField(
-                    value = date,
-                    enabled = false,
-                    textStyle = TextStyle(color = GreyFields),
-                    colors = OutlinedTextFieldDefaults.colors(disabledBorderColor = GreyFields),
-                    onValueChange = { date = it },
-                    shape = RoundedCornerShape(7.dp),
-                    //            label = { Text(text = date  , color = GreyFields) },
-                    modifier = modifier
-                        .fillMaxWidth(),
-                    readOnly = true,
-
-                    trailingIcon = {
-
-                        IconButton(onClick = { isDatePickerShown = true }) {
-
-                            Icon(
-                                painter = painterResource(id = R.drawable.calender),
-                                contentDescription = "select a date ",
-                                modifier = modifier.size(24.dp)
-                            )
-                        }
-
-                    }
-
-
-                )
-                if (isDatePickerShown) {
-                    DatePickerChooser(onConfirm = {
-                        var c = Calendar.getInstance()
-                        c.timeInMillis =
-                            it.selectedDateMillis!! // calender class is used to convert from ms to date
-                        var dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.US)
-
-                        date = dateFormatter.format(c.time)
-
-                        isDatePickerShown = false
-                    }, onDismiss = {
-                        isDatePickerShown = false
-                    })
                 }
-
-
-
-
-
-
-
-
-                Spacer(modifier = modifier.padding(12.dp))
-
-
-                Button(
-                    onClick = { navController.navigate("Onboard") },
-                    shape = RoundedCornerShape(7.dp),
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 8.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
-
-                    ) {
-                    Text(text = "Continue")
-
-                }
-
 
             }
+
+
+        )
+        if (isDatePickerShown) {
+            DatePickerChooser(onConfirm = {
+                var c = Calendar.getInstance()
+                c.timeInMillis =
+                    it.selectedDateMillis!! // calender class is used to convert from ms to date
+                var dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+
+                date = dateFormatter.format(c.time)
+
+                isDatePickerShown = false
+            }, onDismiss = {
+                isDatePickerShown = false
+            })
         }
-    }
 
 
-}
+        val countries = listOf(
+            "🇦🇫 Afghanistan",
+            "🇦🇱 Albania",
+            "🇩🇿 Algeria",
+            "🇦🇩 Andorra",
+            "🇦🇴 Angola",
+            "🇦🇬 Antigua and Barbuda",
+            "🇦🇷 Argentina",
+            "🇦🇲 Armenia",
+            "🇦🇺 Australia",
+            "🇦🇹 Austria",
+            "🇦🇿 Azerbaijan",
+            "🇧🇸 Bahamas",
+            "🇧🇭 Bahrain",
+            "🇧🇩 Bangladesh",
+            "🇧🇧 Barbados",
+            "🇧🇾 Belarus",
+            "🇧🇪 Belgium",
+            "🇧🇿 Belize",
+            "🇧🇯 Benin",
+            "🇧🇹 Bhutan",
+            "🇧🇴 Bolivia",
+            "🇧🇦 Bosnia and Herzegovina",
+            "🇧🇼 Botswana",
+            "🇧🇷 Brazil",
+            "🇧🇳 Brunei",
+            "🇧🇬 Bulgaria",
+            "🇧🇫 Burkina Faso",
+            "🇧🇮 Burundi",
+            "🇰🇭 Cambodia",
+            "🇨🇲 Cameroon",
+            "🇨🇦 Canada",
+            "🇨🇻 Cape Verde",
+            "🇨🇫 Central African Republic",
+            "🇹🇩 Chad",
+            "🇨🇱 Chile",
+            "🇨🇳 China",
+            "🇨🇴 Colombia",
+            "🇰🇲 Comoros",
+            "🇨🇬 Congo",
+            "🇨🇷 Costa Rica",
+            "🇭🇷 Croatia",
+            "🇨🇺 Cuba",
+            "🇨🇾 Cyprus",
+            "🇨🇿 Czech Republic",
+            "🇩🇰 Denmark",
+            "🇩🇯 Djibouti",
+            "🇩🇲 Dominica",
+            "🇩🇴 Dominican Republic",
+            "🇪🇨 Ecuador",
+            "🇪🇬 Egypt",
+            "🇸🇻 El Salvador",
+            "🇬🇶 Equatorial Guinea",
+            "🇪🇷 Eritrea",
+            "🇪🇪 Estonia",
+            "🇪🇹 Ethiopia",
+            "🇫🇯 Fiji",
+            "🇫🇮 Finland",
+            "🇫🇷 France",
+            "🇬🇦 Gabon",
+            "🇬🇲 Gambia",
+            "🇬🇪 Georgia",
+            "🇩🇪 Germany",
+            "🇬🇭 Ghana",
+            "🇬🇷 Greece",
+            "🇬🇩 Grenada",
+            "🇬🇹 Guatemala",
+            "🇬🇳 Guinea",
+            "🇬🇼 Guinea-Bissau",
+            "🇬🇾 Guyana",
+            "🇭🇹 Haiti",
+            "🇭🇳 Honduras",
+            "🇭🇺 Hungary",
+            "🇮🇸 Iceland",
+            "🇮🇳 India",
+            "🇮🇩 Indonesia",
+            "🇮🇷 Iran",
+            "🇮🇶 Iraq",
+            "🇮🇪 Ireland",
+            "🇮🇱 Israel",
+            "🇮🇹 Italy",
+            "🇯🇲 Jamaica",
+            "🇯🇵 Japan",
+            "🇯🇴 Jordan",
+            "🇰🇿 Kazakhstan",
+            "🇰🇪 Kenya",
+            "🇰🇮 Kiribati",
+            "🇰🇵 North Korea",
+            "🇰🇷 South Korea",
+            "🇰🇼 Kuwait",
+            "🇰🇬 Kyrgyzstan",
+            "🇱🇦 Laos",
+            "🇱🇻 Latvia",
+            "🇱🇧 Lebanon",
+            "🇱🇸 Lesotho",
+            "🇱🇷 Liberia",
+            "🇱🇾 Libya",
+            "🇱🇮 Liechtenstein",
+            "🇱🇹 Lithuania",
+            "🇱🇺 Luxembourg",
+            "🇲🇬 Madagascar",
+            "🇲🇼 Malawi",
+            "🇲🇾 Malaysia",
+            "🇲🇻 Maldives",
+            "🇲🇱 Mali",
+            "🇲🇹 Malta",
+            "🇲🇭 Marshall Islands",
+            "🇲🇷 Mauritania",
+            "🇲🇺 Mauritius",
+            "🇲🇽 Mexico",
+            "🇫🇲 Micronesia",
+            "🇲🇩 Moldova",
+            "🇲🇨 Monaco",
+            "🇲🇳 Mongolia",
+            "🇲🇪 Montenegro",
+            "🇲🇦 Morocco",
+            "🇲🇿 Mozambique",
+            "🇲🇲 Myanmar",
+            "🇳🇦 Namibia",
+            "🇳🇷 Nauru",
+            "🇳🇵 Nepal",
+            "🇳🇱 Netherlands",
+            "🇳🇿 New Zealand",
+            "🇳🇮 Nicaragua",
+            "🇳🇪 Niger",
+            "🇳🇬 Nigeria",
+            "🇲🇰 North Macedonia",
+            "🇳🇴 Norway",
+            "🇴🇲 Oman",
+            "🇵🇰 Pakistan",
+            "🇵🇼 Palau",
+            "🇵🇦 Panama",
+            "🇵🇬 Papua New Guinea",
+            "🇵🇾 Paraguay",
+            "🇵🇪 Peru",
+            "🇵🇭 Philippines",
+            "🇵🇱 Poland",
+            "🇵🇹 Portugal",
+            "🇶🇦 Qatar",
+            "🇷🇴 Romania",
+            "🇷🇺 Russia",
+            "🇷🇼 Rwanda",
+            "🇰🇳 Saint Kitts and Nevis",
+            "🇱🇨 Saint Lucia",
+            "🇻🇨 Saint Vincent and the Grenadines",
+            "🇼🇸 Samoa",
+            "🇸🇲 San Marino",
+            "🇸🇹 São Tomé and Príncipe",
+            "🇸🇦 Saudi Arabia",
+            "🇸🇳 Senegal",
+            "🇷🇸 Serbia",
+            "🇸🇨 Seychelles",
+            "🇸🇱 Sierra Leone",
+            "🇸🇬 Singapore",
+            "🇸🇰 Slovakia",
+            "🇸🇮 Slovenia",
+            "🇸🇧 Solomon Islands",
+            "🇸🇴 Somalia",
+            "🇿🇦 South Africa",
+            "🇸🇸 South Sudan",
+            "🇪🇸 Spain",
+            "🇱🇰 Sri Lanka",
+            "🇸🇩 Sudan",
+            "🇸🇷 Suriname",
+            "🇸🇿 Eswatini",
+            "🇸🇪 Sweden",
+            "🇨🇭 Switzerland",
+            "🇸🇾 Syria",
+            "🇹🇯 Tajikistan",
+            "🇹🇿 Tanzania",
+            "🇹🇭 Thailand",
+            "🇹🇱 Timor-Leste",
+            "🇹🇬 Togo",
+            "🇹🇴 Tonga",
+            "🇹🇹 Trinidad and Tobago",
+            "🇹🇳 Tunisia",
+            "🇹🇷 Turkey",
+            "🇹🇲 Turkmenistan",
+            "🇹🇻 Tuvalu",
+            "🇺🇬 Uganda",
+            "🇺🇦 Ukraine",
+            "🇦🇪 United Arab Emirates",
+            "🇬🇧 United Kingdom",
+            "🇺🇸 United States",
+            "🇺🇾 Uruguay",
+            "🇺🇿 Uzbekistan",
+            "🇻🇺 Vanuatu",
+            "🇻🇦 Vatican City",
+            "🇻🇪 Venezuela",
+            "🇻🇳 Vietnam",
+            "🇾🇪 Yemen",
+            "🇿🇲 Zambia",
+            "🇿🇼 Zimbabwe"
+        )
 
-@Composable
-fun ConutryItem(modifier: Modifier = Modifier, country: Country) { // TODO onCardClick
-    Card(
-        onClick = { /*TODO*/ }, modifier = modifier
-            .fillMaxWidth()
-            .background(Color.White)
-    ) {
-        Row(
-            modifier = modifier
-                .height(20.dp)
-                .background(Color.White)
-                .fillMaxWidth()
-        ) {
-            Image(
-                painter = painterResource(id = country.picture),
-                contentDescription = "Egypt",
-                modifier = modifier.padding(start = 8.dp)
+
+
+        if (isBottomSheetVisible) {
+            ModalBottomSheet(
+
+                sheetState = state,
+                content = {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        items(countries) { country ->
+                            CountryItem(country)
+                        }
+
+
+                    }
+
+
+                },
+                onDismissRequest = { isBottomSheetVisible = false }
             )
-            Text(text = country.name, modifier = modifier.padding(start = 8.dp))
+        }
+
+
+
+
+
+
+
+
+        Spacer(modifier = modifier.padding(12.dp))
+
+
+        Button(
+            onClick = { navController.navigate("Onboard") },
+            shape = RoundedCornerShape(7.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
+
+            ) {
+            Text(text = "Continue")
 
         }
+
+
     }
+
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -332,21 +515,25 @@ fun DatePickerChooser(onConfirm: (DatePickerState) -> Unit, onDismiss: () -> Uni
 
 }
 
+
 @Composable
-fun ButtomSheetContent(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.height(200.dp)) {
-
-        ConutryItem(country = Country(R.drawable.egypt, "Egypt"))
-        ConutryItem(country = Country(R.drawable.united_states, "United States"))
-
+fun CountryItem(country: String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = country,
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
-
-
 }
 
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun ExtendedSignUpPreview() {
-    ExtendedSignUp("","","",navController = rememberNavController())
+    ExtendedSignUp("", "", "", navController = rememberNavController())
 }
