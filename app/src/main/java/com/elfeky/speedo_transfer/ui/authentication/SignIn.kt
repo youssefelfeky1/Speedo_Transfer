@@ -41,7 +41,7 @@ import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignIn(modifier: Modifier = Modifier,navController: NavController) {
+fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
 
 
     var email by remember {
@@ -55,6 +55,10 @@ fun SignIn(modifier: Modifier = Modifier,navController: NavController) {
     var isPasswordShown by remember {
         mutableStateOf(false)
     }
+    var validPassword by remember {
+        mutableStateOf(false)
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -91,28 +95,36 @@ fun SignIn(modifier: Modifier = Modifier,navController: NavController) {
         Spacer(modifier = modifier.padding(32.dp))
 
 
-        EmailTextField{
+        EmailTextField {
             email = it
         }
         Spacer(modifier = modifier.padding(4.dp))
-        PasswordTextField( isPasswordShown = isPasswordShown ){
-            password = it
-        }
+        PasswordTextField(
+            isPasswordShown = isPasswordShown,
+            onChange = { password = it },
+            isPasswordValid = { validPassword = it })
 
 
         Spacer(modifier = modifier.padding(12.dp))
 
 
         Button(
-            onClick = { navController.navigate("MainScreen") { popUpTo("SignIn") { inclusive = true } } },
+            onClick = {
+                navController.navigate("MainScreen") {
+                    popUpTo("SignIn") {
+                        inclusive = true
+                    }
+                }
+            },
             shape = RoundedCornerShape(7.dp),
             modifier = modifier
                 .fillMaxWidth()
                 .height(54.dp)
                 .padding(bottom = 8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
+            enabled = email.isNotBlank() && password.isNotBlank() && validPassword
 
-            ) {
+        ) {
             Text(text = "Sign In")
 
         }

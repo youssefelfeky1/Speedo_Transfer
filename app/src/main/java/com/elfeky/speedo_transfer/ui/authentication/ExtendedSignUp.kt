@@ -76,7 +76,7 @@ fun ExtendedSignUp(
 
 
     var date by remember {
-        mutableStateOf("DD/MM/YYY")
+        mutableStateOf("")
     }
     var isDatePickerShown by remember {
         mutableStateOf(false)
@@ -188,7 +188,7 @@ fun ExtendedSignUp(
             colors = OutlinedTextFieldDefaults.colors(disabledBorderColor = GreyFields),
             onValueChange = { date = it },
             shape = RoundedCornerShape(7.dp),
-            //            label = { Text(text = date  , color = GreyFields) },
+            label ={ Text(text = "DD/MM/YYYY" , color = GreyFields)},
             modifier = modifier
                 .fillMaxWidth(),
             readOnly = true,
@@ -463,6 +463,7 @@ fun ExtendedSignUp(
                 .fillMaxWidth()
                 .padding(bottom = 8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
+            enabled = date.isNotBlank() && countryName.isNotBlank()
 
             ) {
             Text(text = "Continue")
@@ -480,7 +481,8 @@ fun CountryItem(country: String , onCardClick:(String)-> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp).clickable { onCardClick(country) },
+            .padding(vertical = 8.dp)
+            .clickable { onCardClick(country) },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
