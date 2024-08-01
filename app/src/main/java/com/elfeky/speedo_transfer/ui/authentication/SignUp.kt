@@ -38,6 +38,7 @@ import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.authentication.components.EmailTextField
 import com.elfeky.speedo_transfer.ui.authentication.components.PasswordTextField
+import com.elfeky.speedo_transfer.ui.authentication.components.passwordConstraints
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
@@ -64,6 +65,10 @@ fun SignUp(modifier: Modifier = Modifier, navController: NavController) {
     var isPasswordShown by remember {
         mutableStateOf(false)
     }
+    var validPassword by remember {
+        mutableStateOf(false)
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -126,9 +131,11 @@ fun SignUp(modifier: Modifier = Modifier, navController: NavController) {
         EmailTextField {
             email = it
         }
-        PasswordTextField(isPasswordShown = isPasswordShown) {
-            password = it
-        }
+        PasswordTextField(
+            isPasswordShown = isPasswordShown,
+            onChange = { password = it },
+            isPasswordValid = {validPassword =it})
+
 
         Spacer(modifier = modifier.padding(12.dp))
 
@@ -148,8 +155,9 @@ fun SignUp(modifier: Modifier = Modifier, navController: NavController) {
                 .height(54.dp)
                 .padding(bottom = 8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
+            enabled = name.isNotBlank() && email.isNotBlank() && password.isNotBlank() && validPassword
 
-            ) {
+        ) {
             Text(text = "Sign Up")
 
         }
@@ -178,3 +186,5 @@ private fun SignUpPreview() {
 
 
 }
+
+

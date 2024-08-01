@@ -2,7 +2,6 @@ package com.elfeky.speedo_transfer.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -32,6 +31,7 @@ import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.data.model.BottomNavigationItem
 import com.elfeky.speedo_transfer.ui.main_screen.home.HomeScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.MoreScreen
+import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.FavouriteScreen
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.MyCardsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transactions.TransactionsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferScreen
@@ -67,6 +67,11 @@ fun MainNavigation(modifier: Modifier = Modifier) {
             composable("More") {
                 MoreScreen(navController)
             }
+            composable("Favourites") {
+                FavouriteScreen(navController)
+            }
+
+
         }
     }
 }
@@ -105,7 +110,9 @@ fun MainNavigationBar(navController: NavController, modifier: Modifier = Modifie
 
     NavigationBar(
         containerColor = Color.White,
-        modifier = Modifier.clip(RoundedCornerShape(topStart =36.dp, topEnd = 36.dp)).background(Color.White),
+        modifier = Modifier
+            .clip(RoundedCornerShape(topStart = 36.dp, topEnd = 36.dp))
+            .background(Color.White),
     ) {
         navigationItems.forEachIndexed { index, item ->
             NavigationBarItem(
