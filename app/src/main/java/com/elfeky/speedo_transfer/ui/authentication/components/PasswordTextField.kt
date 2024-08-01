@@ -24,7 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
-import com.elfeky.speedo_transfer.ui.theme.DarkRed
+import com.elfeky.speedo_transfer.ui.theme.GrayG70
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
 
 
@@ -42,7 +42,7 @@ fun PasswordTextField(
         mutableStateOf(isPasswordShown)
     }
     var passwordConstraintsText by remember {
-        mutableStateOf("Enter a Strong password")
+        mutableStateOf("")
     }
 
     Text(
@@ -75,7 +75,8 @@ fun PasswordTextField(
                 Icon(
                     painter = painterResource(id = id),
                     contentDescription = "password icon",
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(24.dp),
+                    tint = GrayG70
                 )
             }
         }
