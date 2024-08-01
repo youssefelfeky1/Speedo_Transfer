@@ -65,7 +65,8 @@ fun ProfileSymbol(fullName: String, modifier: Modifier = Modifier) {
         Text(
             text = "$firstLetter$lastLetter",
             color = Color(0xFF898886),
-            modifier = Modifier.padding(9.dp)
+            modifier = Modifier.padding(9.dp),
+            fontSize = 20.sp
         )
     }
 }
