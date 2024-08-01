@@ -1,7 +1,7 @@
 package com.elfeky.speedo_transfer.ui.main_screen.transfer
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,19 +10,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ArrowLeft
-import androidx.compose.material3.Button
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,11 +34,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.AmountSection
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.ProgressSection
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
+@SuppressLint("RememberReturnType")
 @Composable
 fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) {
     Column(
@@ -54,12 +52,17 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
                 )
             )
             .padding(16.dp)
-        ,
+            .verticalScroll(rememberScrollState()),
     ) {
         val stageNumber = remember {
             mutableStateOf(1)
         }
-
+        val recipientName = remember {
+            mutableStateOf("")
+        }
+        val recipientAccount = remember {
+            mutableStateOf("")
+        }
 
         TransferTopAppBar {
             navController.popBackStack()
@@ -67,10 +70,23 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
         Spacer(modifier = Modifier.height(24.dp))
         ProgressSection(stageNumber = stageNumber)
         Spacer(modifier = Modifier.height(24.dp))
+        when (stageNumber.value) {
+            1 -> {
+                AmountSection(
+                    recipientName = recipientName,
+                    recipientAccount = recipientAccount,
+                    onContinue = {
+                        stageNumber.value += 1
+                    }
+                )
+            }
+
+            2 -> {}
+            3 -> {}
+        }
 
 
-
-
+        Spacer(modifier = Modifier.height(120.dp))
     }
 }
 

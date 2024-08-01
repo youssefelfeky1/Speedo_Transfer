@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,8 +22,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
+import com.elfeky.speedo_transfer.ui.theme.GrayG10
 import com.elfeky.speedo_transfer.ui.theme.GrayG70
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
+import com.elfeky.speedo_transfer.ui.theme.RedP300
 
 @Composable
 fun EmailTextField(modifier: Modifier = Modifier, onChange: (String) -> Unit) {
@@ -47,6 +50,14 @@ fun EmailTextField(modifier: Modifier = Modifier, onChange: (String) -> Unit) {
             onChange(it)
         },
         label = { Text(text = "Enter your email address", color = GreyFields) },
+        maxLines = 1,
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = RedP300,
+            unfocusedBorderColor = GrayG70,
+            unfocusedContainerColor = GrayG10,
+            focusedContainerColor = GrayG10,
+            focusedLabelColor = RedP300
+        ),
         shape = RoundedCornerShape(7.dp),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         modifier = Modifier.fillMaxWidth(),
