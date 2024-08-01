@@ -50,7 +50,7 @@ fun MainNavigation(modifier: Modifier = Modifier) {
 
         NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = "Home",
         ) {
             composable("Home") {
                 HomeScreen(navController)
