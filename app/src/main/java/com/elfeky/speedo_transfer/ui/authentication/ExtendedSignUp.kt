@@ -1,6 +1,7 @@
 package com.elfeky.speedo_transfer.ui.authentication
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -43,6 +44,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.authentication.components.CountryTextField
+import com.elfeky.speedo_transfer.ui.authentication.components.DateTextField
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
@@ -68,9 +70,6 @@ fun ExtendedSignUp(
 
     var date by remember {
         mutableStateOf("")
-    }
-    var isDatePickerShown by remember {
-        mutableStateOf(false)
     }
 
 
@@ -133,57 +132,10 @@ fun ExtendedSignUp(
             countryName = it
         }
 
-
-
-        Text(
-            text = "Date Of Brith",
-            color = BlackFieldColor,
-            fontSize = 16.sp,
-            modifier = modifier.padding(bottom = 4.dp)
-        )
-
-        OutlinedTextField(
-            value = date,
-            enabled = false,
-            textStyle = TextStyle(color = GreyFields),
-            colors = OutlinedTextFieldDefaults.colors(disabledBorderColor = GreyFields),
-            onValueChange = { date = it },
-            shape = RoundedCornerShape(7.dp),
-            label ={ Text(text = "DD/MM/YYYY" , color = GreyFields)},
-            modifier = modifier
-                .fillMaxWidth()
-                .clickable { isDatePickerShown = true },
-            readOnly = true,
-
-            trailingIcon = {
-
-                IconButton(onClick = { isDatePickerShown = true }) {
-
-                    Icon(
-                        painter = painterResource(id = R.drawable.calender),
-                        contentDescription = "select a date ",
-                        modifier = modifier.size(24.dp)
-                    )
-                }
-
-            }
-
-
-        )
-        if (isDatePickerShown) {
-            DatePickerChooser(onConfirm = {
-                var c = Calendar.getInstance()
-                c.timeInMillis =
-                    it.selectedDateMillis!! // calender class is used to convert from ms to date
-                var dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.US)
-
-                date = dateFormatter.format(c.time)
-
-                isDatePickerShown = false
-            }, onDismiss = {
-                isDatePickerShown = false
-            })
+        DateTextField {
+            date = it
         }
+
 
 
         Spacer(modifier = modifier.padding(12.dp))
@@ -215,34 +167,6 @@ fun ExtendedSignUp(
 
 }
 
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun DatePickerChooser(onConfirm: (DatePickerState) -> Unit, onDismiss: () -> Unit) {
-    val datePickerState =
-        rememberDatePickerState(initialSelectedDateMillis = System.currentTimeMillis())
-    DatePickerDialog(onDismissRequest = {},
-        confirmButton = {
-            TextButton(onClick = { onConfirm(datePickerState) }) {
-                Text(text = "Ok")
-
-            }
-
-
-        },
-        dismissButton = {
-
-            TextButton(onClick = { onDismiss() }) {
-                Text(text = "Cancel")
-
-            }
-        }
-
-    ) {
-        DatePicker(state = datePickerState)
-    }
-
-}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

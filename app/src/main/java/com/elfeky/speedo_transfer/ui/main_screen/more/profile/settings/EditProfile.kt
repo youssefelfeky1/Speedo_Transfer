@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.SegmentedButtonDefaults.Icon
@@ -26,9 +28,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.authentication.components.CountryTextField
+import com.elfeky.speedo_transfer.ui.authentication.components.DateTextField
 import com.elfeky.speedo_transfer.ui.authentication.components.EmailTextField
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.TopAppBarSection
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
+import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.GrayG10
 import com.elfeky.speedo_transfer.ui.theme.GrayG70
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
@@ -45,8 +49,12 @@ fun EditProfile(modifier: Modifier = Modifier) {
     var email by remember {
         mutableStateOf("")
     }
-    
+
     var countryName by remember {
+        mutableStateOf("")
+    }
+
+    var date by remember {
         mutableStateOf("")
     }
 
@@ -92,8 +100,7 @@ fun EditProfile(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth(),
 
 
-
-        )
+            )
         Spacer(modifier = modifier.padding(6.dp))
         EmailTextField {
             email = it
@@ -105,6 +112,28 @@ fun EditProfile(modifier: Modifier = Modifier) {
             countryName = it
         }
 
+        DateTextField {
+            date = it
+        }
+
+        Spacer(modifier = modifier.padding(12.dp))
+
+
+        Button(
+            onClick = {
+                //TODO
+            },
+            shape = RoundedCornerShape(7.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
+            enabled = name.isNotBlank() && email.isNotBlank() && date.isNotBlank() && countryName.isNotBlank()
+
+        ) {
+            Text(text = "Continue")
+
+        }
 
 
     }
