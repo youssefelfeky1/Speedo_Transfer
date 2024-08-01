@@ -190,7 +190,7 @@ fun ExtendedSignUp(
             shape = RoundedCornerShape(7.dp),
             label ={ Text(text = "DD/MM/YYYY" , color = GreyFields)},
             modifier = modifier
-                .fillMaxWidth(),
+                .fillMaxWidth().clickable { isDatePickerShown = true },
             readOnly = true,
 
             trailingIcon = {
