@@ -48,7 +48,7 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
 
 
         LogoutSection(onClick = {
-            AlertDialogLogout()
+            //AlertDialogLogout()
         })
     }
 

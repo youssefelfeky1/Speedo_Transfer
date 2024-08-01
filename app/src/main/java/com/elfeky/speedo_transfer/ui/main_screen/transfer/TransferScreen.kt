@@ -73,11 +73,11 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
         when (stageNumber.value) {
             1 -> {
                 AmountSection(
-                    recipientName = recipientName,
-                    recipientAccount = recipientAccount,
-                    onContinue = {
-                        stageNumber.value += 1
-                    }
+//                    recipientName = recipientName,
+//                    recipientAccount = recipientAccount,
+//                    onContinue = {
+//                        stageNumber.value += 1
+//                    }
                 )
             }
 
