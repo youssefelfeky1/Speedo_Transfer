@@ -42,7 +42,7 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                     )
                 )
             )
-            .padding(8.dp)
+            .padding(16.dp)
     ) {
         TopAppBarSection(text = "Profile")
         Spacer(modifier = modifier.padding(12.dp))
