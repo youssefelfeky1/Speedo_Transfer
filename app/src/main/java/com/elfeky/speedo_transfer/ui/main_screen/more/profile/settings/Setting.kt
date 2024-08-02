@@ -16,10 +16,11 @@ import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.ProfileItem
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.TopAppBarSection
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 @Composable
-fun Setting(modifier: Modifier = Modifier , navController: NavController) {
+fun Setting(modifier: Modifier = Modifier, navController: NavController) {
 
     Column(
         modifier = modifier
@@ -34,20 +35,22 @@ fun Setting(modifier: Modifier = Modifier , navController: NavController) {
             )
             .padding(16.dp)
     ) {
-        TopAppBarSection(text = "Setting")
+        MainTopAppBar(title = "Setting") {
+            navController.popBackStack()
+        }
         Spacer(modifier = modifier.padding(16.dp))
         ProfileItem(
             primaryText = "Change password",
             secondaryText = "Change password",
             logo = R.drawable.lock,
-            contentDescription ="Change password",
+            contentDescription = "Change password",
             navController = navController
         )
         ProfileItem(
             primaryText = "Edit Profile",
             secondaryText = "Change your information",
             logo = R.drawable.edit_1,
-            contentDescription ="Change your information",
+            contentDescription = "Change your information",
             navController = navController
         )
 

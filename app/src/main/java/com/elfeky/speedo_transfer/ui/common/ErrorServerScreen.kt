@@ -1,4 +1,4 @@
-package com.elfeky.speedo_transfer.ui.main_screen.mycards
+package com.elfeky.speedo_transfer.ui.common
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -28,72 +28,57 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
-import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.RedP300
-import com.elfeky.speedo_transfer.util.Constants.HOME
-import com.elfeky.speedo_transfer.util.Constants.MORE
 
 
 @Composable
-fun AccountConnectingScreen(
-    navController: NavController,
-    modifier: Modifier = Modifier
-) {
+fun ErrorScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color.White,
+                        Color(0xFFFFF8E7) ,
                         Color(0xFFFFEAEE)
                     )
                 )
             )
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp, vertical = 36.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
+        verticalArrangement = Arrangement.Center
     ) {
-        MainTopAppBar(title = "Bank Card OTP") {
-            navController.popBackStack()
-        }
-        Spacer(modifier = Modifier.height(50.dp))
-
         Image(
-            painter = painterResource(id = R.drawable.chcek),
-            contentDescription = "check",
-            modifier = Modifier.size(140.dp),
+            painter = painterResource(id = R.drawable._04_error),
+            contentDescription = "Error",
+            modifier = Modifier.size(270.dp)
         )
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(46.dp))
         Text(
-            text = "Account Connected Successfully!",
+            text = "Server error...",
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
-            textAlign = TextAlign.Center,
-            lineHeight = 40.sp
+            fontSize = 24.sp
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "Feel free to connect another account at the same time.",
+            text = "It seems like we’re haveing some diffculities , please don’t leave your aspirations, we are sending for help",
             style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center,
-            color = Color.Gray
+            textAlign = TextAlign.Center
         )
-        Spacer(modifier = Modifier.padding(90.dp))
+        Spacer(modifier = Modifier.height(32.dp))
         Button(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(54.dp),
-            onClick = { navController.navigate(MORE)},
+            onClick = { },
             colors = ButtonDefaults.buttonColors(containerColor = RedP300),
             shape = RoundedCornerShape(size = 8.dp)
         ) {
             Text(
-                text = "Connect another account", fontSize = 16.sp
+                text = "Call Us", fontSize = 16.sp,
+                fontWeight = FontWeight.Medium
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -101,20 +86,22 @@ fun AccountConnectingScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(54.dp),
-            onClick = { navController.navigate(HOME)},
+            onClick = { },
             border = BorderStroke(1.dp, RedP300),
             shape = RoundedCornerShape(size = 8.dp)
         ) {
             Text(
-                text = "Back to home", color = RedP300, fontSize = 16.sp
+                text = "Message Us", color = RedP300, fontSize = 16.sp, fontWeight = FontWeight.Medium
             )
         }
-
     }
+
+
 }
+
 
 @Preview(showBackground = true)
 @Composable
-private fun AccountConnectingPreview() {
-    AccountConnectingScreen(navController = rememberNavController())
+private fun ErrorScreenPreview() {
+    ErrorScreen()
 }

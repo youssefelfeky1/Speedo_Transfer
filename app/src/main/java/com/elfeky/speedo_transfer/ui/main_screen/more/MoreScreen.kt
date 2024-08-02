@@ -39,12 +39,12 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
                     )
                 )
             )
-            .padding(horizontal = 16.dp, vertical = 64.dp),
+            .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
 
-        MainTopAppBar(title = "Favourite") {
+        MainTopAppBar(title = "More") {
             navController.popBackStack()
         }
 

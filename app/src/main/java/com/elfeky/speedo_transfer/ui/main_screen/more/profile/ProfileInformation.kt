@@ -11,12 +11,15 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.ProfileInfoItem
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.TopAppBarSection
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 @Composable
-fun ProfileInformation(modifier: Modifier = Modifier) {
+fun ProfileInformation(modifier: Modifier = Modifier , navController: NavController) {
 
     Column(
         modifier = modifier
@@ -31,7 +34,10 @@ fun ProfileInformation(modifier: Modifier = Modifier) {
             )
             .padding(16.dp)
     ) {
-        TopAppBarSection(text = "Profile information")
+        MainTopAppBar(title = "Profile information"){
+            navController.popBackStack()
+
+        }
         Spacer(modifier = modifier.padding(bottom = 28.dp))
         ProfileInfoItem(primaryName = "Full Name ", secondaryName = "Youssef Shawky")
         ProfileInfoItem(primaryName = "Email", secondaryName = "youssefshawky2002@gmail.com")
@@ -47,6 +53,6 @@ fun ProfileInformation(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun ProfileInformationPreview() {
-    ProfileInformation()
+    ProfileInformation(navController = rememberNavController())
 
 }
