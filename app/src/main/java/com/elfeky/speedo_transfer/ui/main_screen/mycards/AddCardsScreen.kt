@@ -132,7 +132,7 @@ fun AddCardsScreen(
 
             },
             label = { Text(text = "Card NO") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp)),
@@ -165,7 +165,7 @@ fun AddCardsScreen(
                         monthAndYear = it
 
                     },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
                     label = { Text(text = "MM/YY") },
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp)),

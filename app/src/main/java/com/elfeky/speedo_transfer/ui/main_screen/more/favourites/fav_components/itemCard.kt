@@ -26,11 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.DangerD300
-import com.elfeky.speedo_transfer.ui.theme.GrayG10
 import com.elfeky.speedo_transfer.ui.theme.GrayG100
 import com.elfeky.speedo_transfer.ui.theme.GrayG200
 import com.elfeky.speedo_transfer.ui.theme.GrayG40
-import com.elfeky.speedo_transfer.ui.theme.GrayG50
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP50
 
@@ -85,6 +83,7 @@ fun itemCard(accountName: String, accountDescripton: String, modifier: Modifier 
                 painter = painterResource(id = R.drawable.edit_1),
                 contentDescription = "logout",
                 modifier = Modifier.size(24.dp).clickable {
+
 
                 },
                 tint = GrayG200

@@ -39,7 +39,7 @@ import com.elfeky.speedo_transfer.util.Constants.ACCOUNT_CONNECTING_SCREEN
 fun OTPScreen(
     navController: NavController, modifier: Modifier = Modifier
 ) {
-    var otpValue by remember { mutableStateOf("") }
+
     var otpInputFilled by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -77,7 +77,7 @@ fun OTPScreen(
 
         OtpTextField(
             otpText = otpValue,
-            onOtpTextChange = { value,filled ->
+            onOtpTextChange = { value, filled ->
                 otpValue = value
                 otpInputFilled = filled
             }

@@ -79,17 +79,12 @@ private fun CharView(
             .border(
                 1.dp, when {
                     isFocused -> RedP300
-                    else -> GrayG100
+                    else -> RedP300
                 }, RoundedCornerShape(8.dp)
             ),
         textAlign = TextAlign.Center,
         text = char,
-        fontSize = 38.sp ,
-        color = if (isFocused) {
-            RedP300
-        } else {
-            GrayG100
-        },
-
+        fontSize = 36.sp ,
+        color = RedP300
         )
 }
