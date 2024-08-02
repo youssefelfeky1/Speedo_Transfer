@@ -23,7 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.AlertDialogLogout
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.LogoutSection
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.MoreNavigationSection
-import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferTopAppBar
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 @Composable
@@ -39,12 +39,12 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
                     )
                 )
             )
-            .padding(horizontal = 16.dp, vertical = 64.dp),
+            .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
 
-        TransferTopAppBar {
+        MainTopAppBar(title = "More") {
             navController.popBackStack()
         }
 

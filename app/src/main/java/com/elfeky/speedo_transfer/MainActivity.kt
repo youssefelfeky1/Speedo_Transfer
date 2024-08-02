@@ -8,6 +8,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.elfeky.speedo_transfer.navigation.AppNavigation
+import com.elfeky.speedo_transfer.ui.main_screen.more.profile.ProfileScreen
+import com.elfeky.speedo_transfer.ui.main_screen.more.profile.settings.ChangePassword
 import com.elfeky.speedo_transfer.ui.theme.Speedo_TransferTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,6 +20,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             Speedo_TransferTheme {
                 AppNavigation()
+//                ChangePassword()
+//                ProfileScreen(navController = )
+
             }
         }
     }

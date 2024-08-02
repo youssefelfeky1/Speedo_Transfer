@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
-import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferTopAppBar
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.util.Constants.HOME
 import com.elfeky.speedo_transfer.util.Constants.MORE
@@ -53,11 +53,11 @@ fun AccountConnectingScreen(
                     )
                 )
             )
-            .padding(horizontal = 16.dp, vertical = 36.dp),
+            .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        TransferTopAppBar {
+        MainTopAppBar(title = "Bank Card OTP") {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(50.dp))

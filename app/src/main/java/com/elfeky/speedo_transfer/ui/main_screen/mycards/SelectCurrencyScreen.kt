@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
-import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferTopAppBar
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.GrayG0
 import com.elfeky.speedo_transfer.ui.theme.GrayG100
 import com.elfeky.speedo_transfer.ui.theme.GrayG200
@@ -62,10 +62,10 @@ fun SelectCurrencyScreen(
                     )
                 )
             )
-            .padding(horizontal = 16.dp, vertical = 44.dp),
+            .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.Top
     ) {
-        TransferTopAppBar {
+        MainTopAppBar(title = "Select Currency") {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(42.dp))

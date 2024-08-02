@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferTopAppBar
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.GrayG0
 import com.elfeky.speedo_transfer.ui.theme.GrayG10
 import com.elfeky.speedo_transfer.ui.theme.GrayG70
@@ -65,10 +65,10 @@ fun AddCardsScreen(
                     )
                 )
             )
-            .padding(horizontal = 16.dp, vertical = 44.dp),
+            .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.Top
     ) {
-        TransferTopAppBar {
+        MainTopAppBar(title = "Add Card") {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(32.dp))
