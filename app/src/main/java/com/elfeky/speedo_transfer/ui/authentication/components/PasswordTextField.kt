@@ -33,7 +33,9 @@ import com.elfeky.speedo_transfer.ui.theme.RedP300
 
 @Composable
 fun PasswordTextField(
+
     modifier: Modifier = Modifier,
+    text: String,
     isPasswordShown: Boolean,
     onChange: (String) -> Unit,
     isPasswordValid: (Boolean) -> Unit
@@ -49,7 +51,7 @@ fun PasswordTextField(
     }
 
     Text(
-        text = "Password",
+        text = text,
         color = BlackFieldColor,
         textAlign = TextAlign.Start,
         modifier = modifier.padding(vertical = 6.dp)
@@ -61,8 +63,10 @@ fun PasswordTextField(
         onValueChange = {
             tempPassword = it
             onChange(tempPassword)
-            passwordConstraints(tempPassword) { returnedText ->
-                passwordConstraintsText = returnedText
+            if (text != "Current Password") {
+                passwordConstraints(tempPassword) { returnedText ->
+                    passwordConstraintsText = returnedText
+                }
             }
             isPasswordValid(passwordConstraintsText == "your password is a strong password \u2714")
         },
