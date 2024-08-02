@@ -1,5 +1,7 @@
 package com.elfeky.speedo_transfer.navigation
 
+import ConnectionScreen
+import SelectCurrencyScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,15 +35,22 @@ import com.elfeky.speedo_transfer.ui.main_screen.home.HomeScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.MoreScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.FavouriteScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.ProfileScreen
-import com.elfeky.speedo_transfer.ui.main_screen.mycards.MyCardsScreen
+import com.elfeky.speedo_transfer.ui.main_screen.mycards.AccountConnectingScreen
+import com.elfeky.speedo_transfer.ui.main_screen.mycards.AddCardsScreen
+import com.elfeky.speedo_transfer.ui.main_screen.mycards.OTPScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transactions.TransactionsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferScreen
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.Gray
+import com.elfeky.speedo_transfer.util.Constants.ACCOUNT_CONNECTING_SCREEN
+import com.elfeky.speedo_transfer.util.Constants.ADD_CARDS
+import com.elfeky.speedo_transfer.util.Constants.CONNECTING
 import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
 import com.elfeky.speedo_transfer.util.Constants.HOME
 import com.elfeky.speedo_transfer.util.Constants.MORE
 import com.elfeky.speedo_transfer.util.Constants.MY_CARDS
+import com.elfeky.speedo_transfer.util.Constants.OTP
+import com.elfeky.speedo_transfer.util.Constants.PROFILE
 import com.elfeky.speedo_transfer.util.Constants.TRANSACTIONS
 import com.elfeky.speedo_transfer.util.Constants.TRANSFER
 
@@ -69,7 +78,7 @@ fun MainNavigation(modifier: Modifier = Modifier) {
                 TransactionsScreen(navController)
             }
             composable(MY_CARDS) {
-                MyCardsScreen(navController)
+                SelectCurrencyScreen(navController)
             }
             composable(MORE) {
                 MoreScreen(navController)
@@ -77,8 +86,20 @@ fun MainNavigation(modifier: Modifier = Modifier) {
             composable(FAVOURITES) {
                 FavouriteScreen(navController)
             }
-            composable("Profile") {
+            composable(PROFILE) {
                 ProfileScreen()
+            }
+            composable(ADD_CARDS) {
+                AddCardsScreen(navController)
+            }
+            composable(CONNECTING) {
+                ConnectionScreen(navController)
+            }
+            composable(OTP){
+                OTPScreen(navController)
+            }
+            composable(ACCOUNT_CONNECTING_SCREEN){
+                AccountConnectingScreen(navController)
             }
 
 
