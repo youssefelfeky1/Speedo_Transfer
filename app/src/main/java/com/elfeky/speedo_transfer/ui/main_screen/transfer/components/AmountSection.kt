@@ -94,12 +94,12 @@ fun AmountSection(
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp)),
         )
-        visible = (if(amount.value!="")(amount.value.toInt()>5000) else false)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Max limit: 5,000 L.E. per transaction",
-                color = if(visible) RedP300 else Color.Transparent,
-            )
+        visible = (if (amount.value != "") (amount.value.toInt() > 5000) else false)
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = "Max limit: 5,000 L.E. per transaction",
+            color = if (visible) RedP300 else Color.Transparent,
+        )
 
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -183,7 +183,7 @@ fun AmountSection(
                 .height(50.dp),
             shape = RoundedCornerShape(6.dp),
             enabled = (amount.value.isNotBlank() && recipientName.value.isNotBlank() && recipientAccount.value.isNotBlank()
-                    &&(!visible))
+                    && (!visible))
         ) {
             Text(
                 text = "Continue",

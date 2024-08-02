@@ -2,6 +2,7 @@ package com.elfeky.speedo_transfer.ui.main_screen.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,7 +36,7 @@ import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RedP50
 
 @Composable
-fun RecentTransactionsSection(modifier: Modifier = Modifier) {
+fun RecentTransactionsSection(onClickViewAll: () -> Unit, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize()
     ) {
@@ -54,6 +55,8 @@ fun RecentTransactionsSection(modifier: Modifier = Modifier) {
                 text = "View all",
                 color = GrayG200,
                 fontSize = 16.sp,
+                modifier = Modifier
+                    .clickable { onClickViewAll() }
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -105,10 +108,8 @@ fun RecentTransactionSectionItem(modifier: Modifier = Modifier) {
 }
 
 
-
-
 @Preview(showBackground = true)
 @Composable
 private fun RecentTransactionsSectionPreview() {
-    RecentTransactionsSection()
+    RecentTransactionsSection(onClickViewAll = {})
 }

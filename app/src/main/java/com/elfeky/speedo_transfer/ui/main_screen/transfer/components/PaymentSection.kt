@@ -30,11 +30,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.main_screen.sendNotification
 import com.elfeky.speedo_transfer.ui.theme.GrayG0
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
+import com.elfeky.speedo_transfer.util.Constants.HOME
 
 @Composable
 fun PaymentSection(
@@ -43,6 +46,7 @@ fun PaymentSection(
     recipientAccount: MutableState<String>,
     afterTax: Float = 1f,
     stageNumber: MutableState<Int>,
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -118,6 +122,7 @@ fun PaymentSection(
                 amount.value = ""
                 recipientName.value = ""
                 recipientAccount.value = ""
+                navController.navigate(HOME)
             },
             colors = ButtonDefaults.buttonColors(containerColor = RedP300),
             modifier = Modifier
@@ -158,6 +163,7 @@ private fun PaymentSectionPreview() {
         amount = mutableStateOf("1000"),
         recipientName = mutableStateOf("Philip Lackner"),
         recipientAccount = mutableStateOf("234234545453"),
-        stageNumber = mutableStateOf(2)
+        stageNumber = mutableStateOf(2),
+        navController = rememberNavController()
     )
 }

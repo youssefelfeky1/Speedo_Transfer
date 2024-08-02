@@ -123,7 +123,8 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
                     amount = amount,
                     recipientName = recipientName,
                     recipientAccount = recipientAccount,
-                    stageNumber = stageNumber
+                    stageNumber = stageNumber,
+                    navController = navController
                 )
             }
         }

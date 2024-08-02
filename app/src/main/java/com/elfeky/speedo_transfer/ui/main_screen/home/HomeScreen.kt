@@ -21,6 +21,7 @@ import com.elfeky.speedo_transfer.ui.main_screen.home.components.ServicesSection
 import com.elfeky.speedo_transfer.ui.main_screen.home.components.WelcomeSection
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
+import com.elfeky.speedo_transfer.util.Constants.TRANSACTIONS
 
 @Composable
 fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
@@ -37,11 +38,11 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(64.dp))
         WelcomeSection(fullName = "Youssef Elfeky", navController = navController)
         Spacer(modifier = Modifier.height(15.dp))
-        CurrentBalanceSection(currentBalance = 2234234.20f,Modifier.clip(RoundedCornerShape(8.dp)))
+        CurrentBalanceSection(currentBalance = 2234234.20f, Modifier.clip(RoundedCornerShape(8.dp)))
         Spacer(modifier = Modifier.height(16.dp))
         ServicesSection()
         Spacer(modifier = Modifier.height(16.dp))
-        RecentTransactionsSection()
+        RecentTransactionsSection(onClickViewAll = { navController.navigate(TRANSACTIONS) })
     }
 }
 
