@@ -16,4 +16,9 @@ object Constants {
 
     const val MORE = "More"
     const val FAVOURITES = "Favourites"
+
+    const val PROFILE_INFO = "ProfileInfo"
+    const val SETTINGS = "Settings"
+    const val CHANGE_PASSWORD = "ChangePassword"
+    const val EDIT_PROFILE = "EditProfile"
 }

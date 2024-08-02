@@ -32,16 +32,24 @@ import com.elfeky.speedo_transfer.data.model.BottomNavigationItem
 import com.elfeky.speedo_transfer.ui.main_screen.home.HomeScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.MoreScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.FavouriteScreen
+import com.elfeky.speedo_transfer.ui.main_screen.more.profile.ProfileInformation
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.ProfileScreen
+import com.elfeky.speedo_transfer.ui.main_screen.more.profile.settings.ChangePassword
+import com.elfeky.speedo_transfer.ui.main_screen.more.profile.settings.EditProfile
+import com.elfeky.speedo_transfer.ui.main_screen.more.profile.settings.Setting
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.MyCardsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transactions.TransactionsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferScreen
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.Gray
+import com.elfeky.speedo_transfer.util.Constants.CHANGE_PASSWORD
+import com.elfeky.speedo_transfer.util.Constants.EDIT_PROFILE
 import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
 import com.elfeky.speedo_transfer.util.Constants.HOME
 import com.elfeky.speedo_transfer.util.Constants.MORE
 import com.elfeky.speedo_transfer.util.Constants.MY_CARDS
+import com.elfeky.speedo_transfer.util.Constants.PROFILE_INFO
+import com.elfeky.speedo_transfer.util.Constants.SETTINGS
 import com.elfeky.speedo_transfer.util.Constants.TRANSACTIONS
 import com.elfeky.speedo_transfer.util.Constants.TRANSFER
 
@@ -78,8 +86,23 @@ fun MainNavigation(modifier: Modifier = Modifier) {
                 FavouriteScreen(navController)
             }
             composable("Profile") {
-                ProfileScreen()
+                ProfileScreen(navController = navController)
             }
+            composable(PROFILE_INFO){
+                ProfileInformation()
+            }
+            composable(SETTINGS){
+                Setting(navController = navController)
+            }
+            composable(CHANGE_PASSWORD)
+            {
+                ChangePassword()
+            }
+            composable(EDIT_PROFILE){
+                EditProfile()
+            }
+
+
 
 
         }

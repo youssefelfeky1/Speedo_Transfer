@@ -18,8 +18,8 @@ class MainActivity : ComponentActivity() {
         createNotificationChannel(this)
         setContent {
             Speedo_TransferTheme {
-//                AppNavigation()
-                ChangePassword()
+                AppNavigation()
+//                ChangePassword()
 
             }
         }
