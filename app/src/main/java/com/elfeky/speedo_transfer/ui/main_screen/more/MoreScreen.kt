@@ -8,6 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -19,7 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.AlertDialogLogout
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.LogoutSection
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.MoreNavigationSection
-import com.elfeky.speedo_transfer.ui.main_screen.more.components.TopAppBarSection
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 @Composable
@@ -40,16 +44,28 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Top
     ) {
 
-        TopAppBarSection("More")
+        TransferTopAppBar {
+            navController.popBackStack()
+        }
 
         Spacer(modifier = Modifier.height(32.dp))
 
         MoreNavigationSection(navController)
 
-
+        var showDialog by remember { mutableStateOf(false) }
         LogoutSection(onClick = {
-            //AlertDialogLogout()
+            showDialog = true
         })
+
+        if (showDialog) {
+            AlertDialogLogout(
+                onDismiss = { showDialog = false },
+                onConfirm = {
+                    showDialog = false
+                    // navController.navigate("SignIn")
+                }
+            )
+        }
     }
 
 }
