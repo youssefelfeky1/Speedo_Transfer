@@ -21,14 +21,17 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.authentication.components.PasswordTextField
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.TopAppBarSection
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 
 @Composable
-fun ChangePassword(modifier: Modifier = Modifier) {
+fun ChangePassword(modifier: Modifier = Modifier,navController: NavController) {
     
     var currentPassword by remember {
         mutableStateOf("")
@@ -54,7 +57,11 @@ fun ChangePassword(modifier: Modifier = Modifier) {
             )
             .padding(16.dp)
     ) {
-        TopAppBarSection(text = "Change Password")
+        MainTopAppBar(title = "Change Password"){
+            navController.popBackStack()
+
+
+        }
         Spacer(modifier = modifier.padding(16.dp))
         PasswordTextField(text = "Current Password",isPasswordShown = false, onChange = { currentPassword = it }) {
             
@@ -93,6 +100,6 @@ fun ChangePassword(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun ChangePasswordPreview() {
-    ChangePassword()
+    ChangePassword(navController = rememberNavController())
 
 }

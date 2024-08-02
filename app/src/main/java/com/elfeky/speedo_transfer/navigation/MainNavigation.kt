@@ -100,14 +100,14 @@ fun MainNavigation(modifier: Modifier = Modifier) {
                 ProfileScreen(navController = navController)
             }
             composable(PROFILE_INFO) {
-                ProfileInformation()
+                ProfileInformation(navController = navController)
             }
             composable(SETTINGS) {
                 Setting(navController = navController)
             }
             composable(CHANGE_PASSWORD)
             {
-                ChangePassword()
+                ChangePassword(navController = navController)
             }
             composable(ADD_CARDS) {
                 AddCardsScreen(navController)
@@ -122,7 +122,7 @@ fun MainNavigation(modifier: Modifier = Modifier) {
                 AccountConnectingScreen(navController)
             }
             composable(EDIT_PROFILE) {
-                EditProfile()
+                EditProfile(navController = navController)
             }
 
 

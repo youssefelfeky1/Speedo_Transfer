@@ -28,6 +28,7 @@ import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.main_screen.home.components.ProfileSymbol
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.ProfileItem
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.TopAppBarSection
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
@@ -46,7 +47,10 @@ fun ProfileScreen(modifier: Modifier = Modifier, navController: NavController) {
             )
             .padding(16.dp)
     ) {
-        TopAppBarSection(text = "Profile")
+        MainTopAppBar(title = "Profile"){
+            navController.popBackStack()
+
+        }
         Spacer(modifier = modifier.padding(12.dp))
 
         Row(

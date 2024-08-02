@@ -14,6 +14,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.SegmentedButtonDefaults.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,11 +27,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.authentication.components.CountryTextField
 import com.elfeky.speedo_transfer.ui.authentication.components.DateTextField
 import com.elfeky.speedo_transfer.ui.authentication.components.EmailTextField
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.TopAppBarSection
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.GrayG10
@@ -40,7 +44,7 @@ import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 @Composable
-fun EditProfile(modifier: Modifier = Modifier) {
+fun EditProfile(modifier: Modifier = Modifier , navController: NavController) {
 
     var name by remember {
         mutableStateOf("")
@@ -74,7 +78,10 @@ fun EditProfile(modifier: Modifier = Modifier) {
             )
             .padding(16.dp)
     ) {
-        TopAppBarSection(text = "Edit Profile")
+        MainTopAppBar(title = "Edit Profile"){
+            navController.popBackStack()
+
+        }
         Spacer(modifier = modifier.padding(16.dp))
 
         Text(
@@ -142,5 +149,5 @@ fun EditProfile(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun EditProfilePreview() {
-    EditProfile()
+    EditProfile(navController = rememberNavController())
 }
