@@ -62,7 +62,7 @@ fun SelectCurrencyScreen(
                     )
                 )
             )
-            .padding(horizontal = 16.dp),
+            .padding(start = 16.dp, end = 16.dp, bottom = 60.dp ),
         verticalArrangement = Arrangement.Top
     ) {
         MainTopAppBar(title = "Select Currency") {
