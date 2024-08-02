@@ -23,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -30,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.elfeky.speedo_transfer.R
+import com.elfeky.speedo_transfer.ui.main_screen.sendNotification
 import com.elfeky.speedo_transfer.ui.theme.GrayG0
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
@@ -43,6 +45,14 @@ fun PaymentSection(
     stageNumber: MutableState<Int>,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+
+    sendNotification(
+        context,
+        "Successful Transaction",
+        "You have sent ${amount.value} £ to ${recipientName.value}"
+    )
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
