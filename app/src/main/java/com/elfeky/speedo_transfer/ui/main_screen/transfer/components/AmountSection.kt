@@ -26,11 +26,15 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -49,7 +53,6 @@ import com.elfeky.speedo_transfer.ui.theme.GrayG700
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RedP50
-import com.elfeky.speedo_transfer.ui.theme.RedP75
 
 @Composable
 fun AmountSection(
@@ -62,6 +65,9 @@ fun AmountSection(
     youSend: Float = 1f,
     recipientGets: Float = 48.4220f,
 ) {
+    var visible by remember {
+        mutableStateOf(false)
+    }
     Column {
         Text(
             text = "How much are you sending?",
@@ -70,23 +76,6 @@ fun AmountSection(
             color = GrayG900
         )
         Spacer(modifier = Modifier.height(24.dp))
-
-//        Text(
-//            text = "Choose Currency",
-//            fontSize = 16.sp,
-//            color = GrayG700
-//        )
-//
-//        Spacer(modifier = Modifier.height(16.dp))
-
-//        Box(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .clip(RoundedCornerShape(8.dp))
-//                .background(Color.White)
-//                .padding(horizontal = 8.dp, vertical = 16.dp)
-//
-//        ) {
 
         OutlinedTextField(
             value = amount.value,
@@ -105,20 +94,14 @@ fun AmountSection(
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp)),
         )
-//                Text(
-//                    text = "$youSend USD = $recipientGets EGP",
-//                    fontSize = 16.sp,
-//                    color = GrayG700
-//                )
-//                Spacer(modifier = Modifier.height(8.dp))
-//                Text(
-//                    text = "Rate guaranteed (2h)",
-//                    fontSize = 14.sp,
-//                    color = GrayG100
-//                )
-//                Spacer(modifier = Modifier.height(16.dp))
+        visible = (if(amount.value!="")(amount.value.toInt()>5000) else false)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Max limit: 5,000 L.E. per transaction",
+                color = if(visible) RedP300 else Color.Transparent,
+            )
 
-//        }
+
         Spacer(modifier = Modifier.height(24.dp))
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -199,7 +182,8 @@ fun AmountSection(
                 .fillMaxWidth()
                 .height(50.dp),
             shape = RoundedCornerShape(6.dp),
-            enabled = (amount.value.isNotBlank() && recipientName.value.isNotBlank() && recipientAccount.value.isNotBlank())
+            enabled = (amount.value.isNotBlank() && recipientName.value.isNotBlank() && recipientAccount.value.isNotBlank()
+                    &&(!visible))
         ) {
             Text(
                 text = "Continue",
