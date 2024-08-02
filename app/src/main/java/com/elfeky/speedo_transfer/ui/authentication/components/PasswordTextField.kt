@@ -107,28 +107,22 @@ fun PasswordTextField(
 fun passwordConstraints(password: String, onClick: (String) -> Unit) {
     val lowercaseLetter = Regex("[a-z]")
     val uppercaseLetter = Regex("[A-Z]")
-    val digit = Regex("[0-9]")
     val special = Regex("[!\"#\$%&'()*+,-./:;<=>?@\\]^_`{|}~]")
 
 
     val hasLowercaseLetter = lowercaseLetter.containsMatchIn(password)
     val hasUppercaseLetter = uppercaseLetter.containsMatchIn(password)
-    val hasDigit = digit.containsMatchIn(password)
     val hasSpecial = special.containsMatchIn(password)
     if (password.isBlank())
         onClick("your password must not be empty")
-    else if (password.length < 10)
-        onClick("your password must be at least 10 characters long ")
+    else if (password.length < 6)
+        onClick("your password must be at least 6 characters long ")
     else if (!hasLowercaseLetter)
         onClick("your password must have at least 1 lowercase letter")
     else if (!hasUppercaseLetter)
         onClick("your password must have at least 1 uppercase letter")
-    else if (!hasDigit)
-        onClick("your password must have at least 1 digit")
     else if (!hasSpecial)
         onClick("your password must have at least 1 special character")
     else
         onClick("your password is a strong password \u2714")
-
-
 }
