@@ -57,7 +57,7 @@ fun AccountConnectingScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        TransferTopAppBar {
+        TransferTopAppBar(title = "Bank Card OTP") {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(50.dp))

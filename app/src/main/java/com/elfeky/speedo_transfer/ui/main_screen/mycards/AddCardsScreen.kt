@@ -68,7 +68,7 @@ fun AddCardsScreen(
             .padding(horizontal = 16.dp, vertical = 44.dp),
         verticalArrangement = Arrangement.Top
     ) {
-        TransferTopAppBar {
+        TransferTopAppBar(title = "Add Card") {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(32.dp))

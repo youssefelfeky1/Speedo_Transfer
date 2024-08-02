@@ -57,7 +57,7 @@ fun OTPScreen(
         verticalArrangement = Arrangement.Top
     ) {
 
-        TransferTopAppBar {
+        TransferTopAppBar(title ="Bank Card OTP") {
             navController.popBackStack()
         }
 

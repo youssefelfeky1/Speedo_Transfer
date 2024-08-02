@@ -44,7 +44,7 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Top
     ) {
 
-        TransferTopAppBar {
+        TransferTopAppBar(title = "Favourite") {
             navController.popBackStack()
         }
 

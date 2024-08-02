@@ -65,7 +65,7 @@ fun SelectCurrencyScreen(
             .padding(horizontal = 16.dp, vertical = 44.dp),
         verticalArrangement = Arrangement.Top
     ) {
-        TransferTopAppBar {
+        TransferTopAppBar(title = "Select Currency") {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(42.dp))

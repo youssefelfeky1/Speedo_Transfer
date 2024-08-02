@@ -43,7 +43,7 @@ fun FavouriteScreen(navController: NavController, modifier: Modifier = Modifier)
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        TransferTopAppBar {
+        TransferTopAppBar(title = "Favourite") {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(32.dp))
