@@ -80,7 +80,7 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
             .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState()),
     ) {
-        TransferTopAppBar(title = "Transfer") {
+        MainTopAppBar(title = "Transfer") {
             if (stageNumber.value == 1) {
                 navController.popBackStack()
             } else if (stageNumber.value == 3) {
@@ -176,7 +176,7 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TransferTopAppBar(modifier: Modifier = Modifier,title:String ,onBackClick: () -> Unit) {
+fun MainTopAppBar(modifier: Modifier = Modifier, title:String, onBackClick: () -> Unit) {
     TopAppBar(
         title = {
             Box(

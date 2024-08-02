@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.fav_components.itemCard
-import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferTopAppBar
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
@@ -43,7 +43,7 @@ fun FavouriteScreen(navController: NavController, modifier: Modifier = Modifier)
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        TransferTopAppBar(title = "Favourite") {
+        MainTopAppBar(title = "Favourite") {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(32.dp))

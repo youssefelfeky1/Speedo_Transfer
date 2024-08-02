@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.components.OtpTextField
-import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferTopAppBar
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.util.Constants.ACCOUNT_CONNECTING_SCREEN
 
@@ -57,7 +57,7 @@ fun OTPScreen(
         verticalArrangement = Arrangement.Top
     ) {
 
-        TransferTopAppBar(title ="Bank Card OTP") {
+        MainTopAppBar(title ="Bank Card OTP") {
             navController.popBackStack()
         }
 
