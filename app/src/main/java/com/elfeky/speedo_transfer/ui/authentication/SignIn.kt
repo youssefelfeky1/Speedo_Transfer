@@ -100,6 +100,7 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
         Spacer(modifier = modifier.height(4.dp))
 
         PasswordTextField(
+            text = "Password",
             isPasswordShown = isPasswordShown,
             onChange = { password = it },
             isPasswordValid = { validPassword = it })
