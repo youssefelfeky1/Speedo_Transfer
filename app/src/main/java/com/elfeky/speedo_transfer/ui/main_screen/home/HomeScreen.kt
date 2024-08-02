@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.main_screen.home.components.CurrentBalanceSection
+import com.elfeky.speedo_transfer.ui.main_screen.home.components.RecentTransactionsSection
 import com.elfeky.speedo_transfer.ui.main_screen.home.components.ServicesSection
 import com.elfeky.speedo_transfer.ui.main_screen.home.components.WelcomeSection
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
@@ -40,6 +41,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
         ServicesSection()
         Spacer(modifier = Modifier.height(16.dp))
+        RecentTransactionsSection()
     }
 }
 

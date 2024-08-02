@@ -30,9 +30,9 @@ fun SplashScreen(navController: NavController) {
     }
     LaunchedEffect(key1 = true) {
         scale.animateTo(targetValue = 0.8f, animationSpec = tween(durationMillis = 700, easing = {
-            OvershootInterpolator(2f).getInterpolation(it)
+            OvershootInterpolator(4f).getInterpolation(it)
         }))
-        delay(3000L)
+        delay(2000L)
         navController.navigate("signIn") { popUpTo("SplashScreen") { inclusive = true } }
     }
 

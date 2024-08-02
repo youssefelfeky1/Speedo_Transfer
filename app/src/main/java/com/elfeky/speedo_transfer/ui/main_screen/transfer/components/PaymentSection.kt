@@ -44,7 +44,7 @@ fun PaymentSection(
     modifier: Modifier = Modifier
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
             imageVector = ImageVector.vectorResource(id = R.drawable.check_mark),
