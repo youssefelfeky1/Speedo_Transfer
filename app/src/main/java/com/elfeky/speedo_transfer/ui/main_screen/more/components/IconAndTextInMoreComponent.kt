@@ -26,6 +26,9 @@ import androidx.navigation.NavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.GrayG200
 import com.elfeky.speedo_transfer.ui.theme.GrayG40
+import com.elfeky.speedo_transfer.util.Constants.BANQUE_MISR_URL
+import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
+import com.elfeky.speedo_transfer.util.Constants.PROFILE
 
 @Composable
 fun MoreNavigationSection(navController: NavController) {
@@ -33,17 +36,17 @@ fun MoreNavigationSection(navController: NavController) {
     IconAndTextInMoreComponent(R.drawable.website_1, "Transfer From Website", onClick = {
 
         val webIntent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse("https://www.banquemisr.com/")
+            data = Uri.parse(BANQUE_MISR_URL)
         }
         context.startActivity(webIntent)
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.favorite_1, "Favourites", onClick = {
-        navController.navigate("Favourites")
+        navController.navigate(FAVOURITES)
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.user, "Profile", onClick = {
-       navController.navigate("Profile")
+       navController.navigate(PROFILE)
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.support_1, "Help", onClick = {

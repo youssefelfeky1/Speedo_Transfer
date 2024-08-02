@@ -22,6 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.main_screen.home.components.ProfileSymbol
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.ProfileItem
@@ -30,7 +32,7 @@ import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 @Composable
-fun ProfileScreen(modifier: Modifier = Modifier) {
+fun ProfileScreen(modifier: Modifier = Modifier, navController: NavController) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -55,7 +57,8 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                 fullName = "Youssef Shawky",
                 modifier = modifier.size(48.dp)
             )
-            Text(text = "Youssef Shawky",
+            Text(
+                text = "Youssef Shawky",
                 fontSize = 20.sp,
                 color = BlackText,
                 fontWeight = FontWeight.Bold,
@@ -72,7 +75,8 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
             primaryText = "Personal information",
             secondaryText = "Your information",
             logo = R.drawable.user_1,
-            contentDescription = "user"
+            contentDescription = "user",
+            navController = navController
         )
         HorizontalDivider(
             thickness = 1.dp,
@@ -82,7 +86,8 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
             primaryText = "Setting",
             secondaryText = "Change your settings",
             logo = R.drawable.setting_1,
-            contentDescription = "settings"
+            contentDescription = "settings",
+            navController = navController
         )
         HorizontalDivider(
             thickness = 1.dp,
@@ -92,7 +97,8 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
             primaryText = "Payment history",
             secondaryText = "view your transactions",
             logo = R.drawable.history_1,
-            contentDescription = "payment"
+            contentDescription = "payment",
+            navController = navController
         )
         HorizontalDivider(
             thickness = 1.dp,
@@ -102,7 +108,8 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
             primaryText = "My Favourite list",
             secondaryText = "view your favourites",
             logo = R.drawable.favorite_1,
-            contentDescription = "favourite"
+            contentDescription = "favourite",
+            navController = navController
         )
 
 
@@ -114,6 +121,6 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun ProfileScreenPreview() {
-    ProfileScreen()
+    ProfileScreen(navController = rememberNavController())
 
 }

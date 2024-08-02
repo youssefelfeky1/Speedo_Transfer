@@ -2,6 +2,7 @@ package com.elfeky.speedo_transfer.ui.main_screen.more.profile.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,10 +22,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.GreyText
 import com.elfeky.speedo_transfer.ui.theme.RedP50
+import com.elfeky.speedo_transfer.util.Constants.CHANGE_PASSWORD
+import com.elfeky.speedo_transfer.util.Constants.EDIT_PROFILE
+import com.elfeky.speedo_transfer.util.Constants.PROFILE_INFO
+import com.elfeky.speedo_transfer.util.Constants.SETTINGS
 
 @Composable
 fun ProfileItem(
@@ -32,11 +39,23 @@ fun ProfileItem(
     primaryText: String,
     secondaryText: String,
     logo: Int,
-    contentDescription: String
+    contentDescription: String,
+    navController: NavController
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth().height(70.dp),
+            .fillMaxWidth()
+            .height(70.dp)
+            .clickable {
+                if (primaryText == "Personal information")
+                    navController.navigate(PROFILE_INFO)
+                else if (primaryText == "Setting")
+                    navController.navigate(SETTINGS)
+                else if (primaryText == "Change password")
+                    navController.navigate(CHANGE_PASSWORD)
+                else if (primaryText == "Edit Profile")
+                    navController.navigate(EDIT_PROFILE)
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
@@ -59,7 +78,7 @@ fun ProfileItem(
                 color = GrayG900,
                 fontWeight = FontWeight.Bold
             )
-            Spacer(modifier = modifier.padding(top =4.dp))
+            Spacer(modifier = modifier.padding(top = 4.dp))
             Text(text = secondaryText, fontSize = 16.sp, color = GreyText)
 
         }
@@ -85,6 +104,7 @@ private fun ProfileItemPreview() {
         primaryText = "Personal Informtaion",
         secondaryText = "Your information",
         logo = R.drawable.user_1,
-        contentDescription = ""
+        contentDescription = "",
+        navController = rememberNavController()
     )
 }

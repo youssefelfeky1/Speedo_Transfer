@@ -144,6 +144,7 @@ fun SignUp(modifier: Modifier = Modifier, navController: NavController) {
             email = it
         }
         PasswordTextField(
+            text = "Password",
             isPasswordShown = isPasswordShown,
             onChange = { password = it },
             isPasswordValid = {validPassword =it})
