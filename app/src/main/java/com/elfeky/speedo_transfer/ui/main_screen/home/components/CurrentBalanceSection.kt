@@ -1,5 +1,6 @@
 package com.elfeky.speedo_transfer.ui.main_screen.home.components
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,8 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 
+@SuppressLint("DefaultLocale")
 @Composable
-fun CurrentBalanceSection(currentBalance: String, modifier: Modifier = Modifier) {
+fun CurrentBalanceSection(currentBalance: Float, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -37,7 +39,7 @@ fun CurrentBalanceSection(currentBalance: String, modifier: Modifier = Modifier)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "$$currentBalance",
+                text = "$${String.format("%,.2f", currentBalance)}",
                 color = Color.White,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold
@@ -50,5 +52,5 @@ fun CurrentBalanceSection(currentBalance: String, modifier: Modifier = Modifier)
 @Preview
 @Composable
 private fun CurrentBalanceSectionPreview() {
-    CurrentBalanceSection(currentBalance = "2,234,234.20")
+    CurrentBalanceSection(currentBalance = 2234234.2f)
 }

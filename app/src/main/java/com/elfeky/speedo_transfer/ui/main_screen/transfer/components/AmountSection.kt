@@ -104,7 +104,7 @@ fun AmountSection(
                 focusedContainerColor = GrayG10,
                 focusedLabelColor = RedP300
             ),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp)),
@@ -190,7 +190,8 @@ fun AmountSection(
                 focusedContainerColor = GrayG10,
                 focusedLabelColor = RedP300
             ),
-            singleLine = true
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword)
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -201,7 +202,8 @@ fun AmountSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),
-            shape = RoundedCornerShape(6.dp)
+            shape = RoundedCornerShape(6.dp),
+            enabled = (amount.value.isNotBlank() && recipientName.value.isNotBlank() && recipientAccount.value.isNotBlank())
         ) {
             Text(
                 text = "Continue",
@@ -266,7 +268,6 @@ fun FavouriteBottomSheet(
 
 
 }
-
 
 
 @Composable

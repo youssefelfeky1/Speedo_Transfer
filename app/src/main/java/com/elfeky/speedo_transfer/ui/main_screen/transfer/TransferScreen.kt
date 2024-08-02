@@ -40,7 +40,9 @@ import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.data.model.Recipient
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.AmountSection
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.ConfirmationSection
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.FavouriteBottomSheet
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.PaymentSection
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.ProgressSection
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
@@ -54,7 +56,7 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
     val stageNumber = remember {
         mutableStateOf(1)
     }
-    val amount = remember{
+    val amount = remember {
         mutableStateOf("")
     }
     val recipientName = remember {
@@ -63,7 +65,7 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
     val recipientAccount = remember {
         mutableStateOf("")
     }
-    var showBottomSheet = remember {
+    val showBottomSheet = remember {
         mutableStateOf(false)
     }
     val sheetState = rememberModalBottomSheetState()
@@ -81,6 +83,11 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
         TransferTopAppBar {
             if (stageNumber.value == 1) {
                 navController.popBackStack()
+            } else if (stageNumber.value == 3) {
+                stageNumber.value = 1
+                amount.value = ""
+                recipientName.value = ""
+                recipientAccount.value = ""
             } else {
                 stageNumber.value -= 1
             }
@@ -102,8 +109,23 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
                 )
             }
 
-            2 -> {}
-            3 -> {}
+            2 -> {
+                ConfirmationSection(
+                    amount = amount,
+                    recipientName = recipientName,
+                    recipientAccount = recipientAccount,
+                    stageNumber = stageNumber
+                )
+            }
+
+            3 -> {
+                PaymentSection(
+                    amount = amount,
+                    recipientName = recipientName,
+                    recipientAccount = recipientAccount,
+                    stageNumber = stageNumber
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(120.dp))
@@ -137,15 +159,15 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
 
             FavouriteBottomSheet(
                 favouriteRecipients = listOf(
-                    Recipient("Youssef Elfeky","01002757952"),
-                    Recipient("Philip Lackner","01234357945"),
+                    Recipient("Youssef Elfeky", "01002757952"),
+                    Recipient("Philip Lackner", "01234357945"),
                 ),
                 onItemClick = {
                     recipientName.value = it.recipientName
                     recipientAccount.value = it.recipientAccount
                     showBottomSheet.value = false
                 }
-                )
+            )
         }
     }
 
