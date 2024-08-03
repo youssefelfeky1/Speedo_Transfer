@@ -21,10 +21,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.elfeky.speedo_transfer.ui.main_screen.transactions.components.TransactionItem
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
+import com.elfeky.speedo_transfer.util.Constants.TRANSACTION_DETAIL
 
 @Composable
 fun TransactionsScreen(navController: NavController, modifier: Modifier = Modifier) {
@@ -62,11 +64,14 @@ fun TransactionsScreen(navController: NavController, modifier: Modifier = Modifi
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                 )
+                Spacer(modifier = Modifier.height(16.dp))
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
+                    item{
+                        TransactionItem(onItemClick = { navController.navigate(TRANSACTION_DETAIL) })
+                    }
                 }
             }
 

@@ -43,6 +43,7 @@ import com.elfeky.speedo_transfer.ui.main_screen.more.profile.settings.Setting
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.AccountConnectingScreen
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.AddCardsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.OTPScreen
+import com.elfeky.speedo_transfer.ui.main_screen.transactions.TransactionDetailScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transactions.TransactionsScreen
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferScreen
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
@@ -61,6 +62,7 @@ import com.elfeky.speedo_transfer.util.Constants.PROFILE
 import com.elfeky.speedo_transfer.util.Constants.PROFILE_INFO
 import com.elfeky.speedo_transfer.util.Constants.SETTINGS
 import com.elfeky.speedo_transfer.util.Constants.TRANSACTIONS
+import com.elfeky.speedo_transfer.util.Constants.TRANSACTION_DETAIL
 import com.elfeky.speedo_transfer.util.Constants.TRANSFER
 
 @Composable
@@ -85,6 +87,9 @@ fun MainNavigation(modifier: Modifier = Modifier) {
             }
             composable(TRANSACTIONS) {
                 TransactionsScreen(navController)
+            }
+            composable(TRANSACTION_DETAIL){
+                TransactionDetailScreen(navController =navController )
             }
             composable(MY_CARDS) {
                 SelectCurrencyScreen(navController)

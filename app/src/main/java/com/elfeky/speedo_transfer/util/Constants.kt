@@ -15,6 +15,7 @@ object Constants {
     const val HOME = "Home"
     const val TRANSFER = "Transfer"
     const val TRANSACTIONS = "Transactions"
+    const val TRANSACTION_DETAIL = "TransactionDetail"
     const val MY_CARDS = "My cards"
 
     const val MORE = "More"

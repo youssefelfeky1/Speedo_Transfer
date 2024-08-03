@@ -161,7 +161,9 @@ fun AmountSection(
         OutlinedTextField(
             value = recipientAccount.value,
             onValueChange = {
-                recipientAccount.value = it
+                if (it.isDigitsOnly()) {
+                    recipientAccount.value = it
+                }
             },
             label = { Text(text = "Enter Percipient Account Number") },
             modifier = Modifier
