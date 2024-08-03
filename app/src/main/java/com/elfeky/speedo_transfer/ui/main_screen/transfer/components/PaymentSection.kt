@@ -1,6 +1,7 @@
 package com.elfeky.speedo_transfer.ui.main_screen.transfer.components
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -30,10 +31,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
+import com.elfeky.speedo_transfer.data.model.Recipient
 import com.elfeky.speedo_transfer.ui.main_screen.sendNotification
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.TransferViewModel
 import com.elfeky.speedo_transfer.ui.theme.GrayG0
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
@@ -47,7 +51,8 @@ fun PaymentSection(
     afterTax: Float = 1f,
     stageNumber: MutableState<Int>,
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: TransferViewModel = viewModel()
 ) {
     val context = LocalContext.current
 
@@ -138,7 +143,15 @@ fun PaymentSection(
         }
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedButton(
-            onClick = { /* TODO Add Recipient To Favourites */ },
+            onClick = {
+                viewModel.upsertRecipient(
+                    Recipient(
+                        recipientName = recipientName.value,
+                        recipientAccount = recipientAccount.value
+                    )
+                )
+                Toast.makeText(context, "Added Successfully to Favorites", Toast.LENGTH_LONG).show()
+            },
             border = BorderStroke(1.5.dp, RedP300),
             modifier = Modifier
                 .fillMaxWidth()

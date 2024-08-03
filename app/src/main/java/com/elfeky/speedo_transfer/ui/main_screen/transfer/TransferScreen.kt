@@ -23,6 +23,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,7 +40,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
-import com.elfeky.speedo_transfer.data.model.Recipient
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.AmountSection
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.ConfirmationSection
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.FavouriteBottomSheet
@@ -48,11 +49,16 @@ import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("RememberReturnType")
 @Composable
-fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun TransferScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: TransferViewModel = viewModel()
+) {
     val stageNumber = remember {
         mutableStateOf(1)
     }
@@ -68,6 +74,8 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
     val showBottomSheet = remember {
         mutableStateOf(false)
     }
+    val favoriteRecipients by viewModel.seletAllRecipients().collectAsState(initial = emptyList())
+
     val sheetState = rememberModalBottomSheetState()
     Column(
         modifier = modifier
@@ -160,10 +168,7 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
             }
 
             FavouriteBottomSheet(
-                favouriteRecipients = listOf(
-                    Recipient("Youssef Elfeky", "01002757952"),
-                    Recipient("Philip Lackner", "01234357945"),
-                ),
+                favouriteRecipients = favoriteRecipients,
                 onItemClick = {
                     recipientName.value = it.recipientName
                     recipientAccount.value = it.recipientAccount

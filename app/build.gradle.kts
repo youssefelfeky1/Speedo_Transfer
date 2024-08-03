@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -81,6 +82,10 @@ dependencies {
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
+
+    // Room
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 
     // coil
     implementation("io.coil-kt:coil-compose:2.6.0")

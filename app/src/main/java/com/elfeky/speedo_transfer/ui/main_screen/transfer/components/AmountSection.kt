@@ -42,6 +42,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.isDigitsOnly
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.data.model.Recipient
 import com.elfeky.speedo_transfer.ui.theme.GrayG0
@@ -79,7 +80,11 @@ fun AmountSection(
 
         OutlinedTextField(
             value = amount.value,
-            onValueChange = { amount.value = it },
+            onValueChange = {
+                if (it.isDigitsOnly()) {
+                    amount.value = it
+                }
+            },
             maxLines = 1,
             label = { Text(text = "Enter Amount") },
             colors = OutlinedTextFieldDefaults.colors(
