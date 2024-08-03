@@ -24,6 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.DangerD300
 import com.elfeky.speedo_transfer.ui.theme.GrayG100
@@ -31,9 +33,11 @@ import com.elfeky.speedo_transfer.ui.theme.GrayG200
 import com.elfeky.speedo_transfer.ui.theme.GrayG40
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP50
+import com.elfeky.speedo_transfer.util.Constants.EDIT_FAVOURITE
 
 @Composable
-fun itemCard(accountName: String, accountDescripton: String, modifier: Modifier = Modifier) {
+fun itemCard(navController : NavController,accountName: String, accountDescripton: String, modifier: Modifier = Modifier) {
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.elevatedCardColors(RedP50)
@@ -82,19 +86,24 @@ fun itemCard(accountName: String, accountDescripton: String, modifier: Modifier 
             Icon(
                 painter = painterResource(id = R.drawable.edit_1),
                 contentDescription = "logout",
-                modifier = Modifier.size(24.dp).clickable {
+                modifier = Modifier
+                    .size(24.dp)
+                    .clickable {
 
+                        navController.navigate(EDIT_FAVOURITE)
 
-                },
+                    },
                 tint = GrayG200
             )
             Spacer(modifier = Modifier.width(12.dp))
             Icon(
                 painter = painterResource(id = R.drawable.delete_1),
                 contentDescription = "logout",
-                modifier = Modifier.size(24.dp).clickable {
+                modifier = Modifier
+                    .size(24.dp)
+                    .clickable {
 
-                },
+                    },
                 tint = DangerD300
             )
             Spacer(modifier = Modifier.width(16.dp))

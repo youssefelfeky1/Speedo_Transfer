@@ -18,8 +18,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             Speedo_TransferTheme {
                 AppNavigation()
-
-
             }
         }
     }
