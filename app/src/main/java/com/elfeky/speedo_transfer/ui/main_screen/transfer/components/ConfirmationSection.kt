@@ -155,9 +155,9 @@ fun UserInformationItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(RedP50)
+            .padding(horizontal = 16.dp)
             .padding(16.dp)
     ) {
         Icon(
