@@ -74,7 +74,7 @@ fun TransferScreen(
     val showBottomSheet = remember {
         mutableStateOf(false)
     }
-    val favoriteRecipients by viewModel.seletAllRecipients().collectAsState(initial = emptyList())
+    val favoriteRecipients by viewModel.selectAllRecipients().collectAsState(initial = emptyList())
 
     val sheetState = rememberModalBottomSheetState()
     Column(

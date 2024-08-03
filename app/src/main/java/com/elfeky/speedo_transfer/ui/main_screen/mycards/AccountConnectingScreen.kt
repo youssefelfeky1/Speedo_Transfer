@@ -33,6 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.RedP300
+import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.util.Constants.HOME
 import com.elfeky.speedo_transfer.util.Constants.MORE
 
@@ -49,7 +50,7 @@ fun AccountConnectingScreen(
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         Color.White,
-                        Color(0xFFFFEAEE)
+                        RoseBottomGradient
                     )
                 )
             )

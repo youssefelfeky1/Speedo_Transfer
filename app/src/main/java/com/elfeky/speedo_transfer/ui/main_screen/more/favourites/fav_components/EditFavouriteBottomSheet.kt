@@ -201,8 +201,4 @@ private fun EditFavBtnSheet(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun EditFavouritePreview() {
-    EditFavourite(rememberNavController(), onSave = { _, _ -> })
-}
+

@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,19 +18,24 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.AlertDialogLogout
+import com.elfeky.speedo_transfer.ui.main_screen.more.components.HelpBS
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.LogoutSection
 import com.elfeky.speedo_transfer.ui.main_screen.more.components.MoreNavigationSection
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
+import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun MoreScreen(navController: NavController) {
+    val showBottomSheet = remember {
+        mutableStateOf(false)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -35,7 +43,7 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         YellowTopGradient,
-                        Color(0xFFFFEAEE)
+                        RoseBottomGradient
                     )
                 )
             )
@@ -50,12 +58,11 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        MoreNavigationSection(navController)
+        MoreNavigationSection(navController = navController , onHelpClick = { showBottomSheet.value = true }  )
 
+        // Logout AlertDialog
         var showDialog by remember { mutableStateOf(false) }
-        LogoutSection(onClick = {
-            showDialog = true
-        })
+        LogoutSection(onClick = { showDialog = true })
 
         if (showDialog) {
             AlertDialogLogout(
@@ -66,6 +73,27 @@ fun MoreScreen(navController: NavController, modifier: Modifier = Modifier) {
                 }
             )
         }
+
+
+        // help bottomSheet
+        val sheetState = rememberModalBottomSheetState()
+
+        if (showBottomSheet.value) {
+            ModalBottomSheet(
+                onDismissRequest = {
+                    showBottomSheet.value = false
+                },
+                sheetState = sheetState
+            ) {
+                // Sheet content
+
+                HelpBS()
+
+            }
+
+        }
+
+
     }
 
 }

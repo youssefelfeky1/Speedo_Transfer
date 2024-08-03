@@ -45,40 +45,19 @@ import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RedP50
 import com.elfeky.speedo_transfer.util.Constants.MORE
 
-@OptIn(ExperimentalMaterial3Api::class)
+
+
 @Composable
-fun HelpBottomSheet(navController: NavController) {
+ fun HelpBS() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        ContactOptions()
 
-    val sheetState = rememberModalBottomSheetState()
-    var showBottomSheet by remember { mutableStateOf(true) }
-    Scaffold { contentPadding ->
-        // Screen content
-        MoreScreen(
-            navController = navController,
-        )
-
-        if (showBottomSheet) {
-            ModalBottomSheet(
-                onDismissRequest = {
-                    showBottomSheet = false
-                    navController.navigate(MORE)
-                },
-                sheetState = sheetState
-            ) {
-                // Sheet content
-
-                Row(
-                    modifier = Modifier.fillMaxWidth().height(200.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                       ContactOptions()
-
-                }
-
-            }
-
-        }
     }
 }
 

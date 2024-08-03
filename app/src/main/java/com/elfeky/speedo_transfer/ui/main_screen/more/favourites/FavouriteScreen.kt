@@ -7,10 +7,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -19,15 +23,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.fav_components.itemCard
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.Favourite
+import com.elfeky.speedo_transfer.ui.main_screen.transfer.components.FavouriteBottomSheet
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
+import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FavouriteScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun FavouriteScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: FavouriteViewModel = viewModel()
+) {
+    val favoriteRecipients by viewModel.selectAllRecipients().collectAsState(initial = emptyList())
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -35,7 +50,7 @@ fun FavouriteScreen(navController: NavController, modifier: Modifier = Modifier)
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         YellowTopGradient,
-                        Color(0xFFFFEAEE)
+                        RoseBottomGradient
                     )
                 )
             )
@@ -56,16 +71,27 @@ fun FavouriteScreen(navController: NavController, modifier: Modifier = Modifier)
         )
         Spacer(modifier = Modifier.height(32.dp))
 
-        val itemsList = 3
 
-        LazyColumn {
-            items(itemsList) { item ->
-                itemCard(navController,accountName = "Amr Nasser", accountDescripton = "Account xxxx7890")
-            }
+
+
+        // edit bottom sheet
+        val recipientName = remember {
+            mutableStateOf("")
+        }
+        val recipientAccount = remember {
+            mutableStateOf("")
         }
 
-    }
+        FavouriteBottomSheet(
+            favouriteRecipients = favoriteRecipients,
+            onItemClick = {
+                recipientName.value = it.recipientName
+                recipientAccount.value = it.recipientAccount
+            }
+        )
 
+
+    }
 }
 
 

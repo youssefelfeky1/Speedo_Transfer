@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.RedP300
+import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
+import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 
 
 @Composable
@@ -37,8 +39,8 @@ fun NoInternetScreen() {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFFFF8E7),
-                        Color(0xFFFFEAEE)
+                        YellowTopGradient,
+                        RoseBottomGradient
                     )
                 )
             )

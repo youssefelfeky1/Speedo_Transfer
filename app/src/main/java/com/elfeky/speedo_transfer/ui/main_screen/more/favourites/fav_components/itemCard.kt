@@ -25,7 +25,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.DangerD300
 import com.elfeky.speedo_transfer.ui.theme.GrayG100
@@ -33,10 +32,15 @@ import com.elfeky.speedo_transfer.ui.theme.GrayG200
 import com.elfeky.speedo_transfer.ui.theme.GrayG40
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP50
-import com.elfeky.speedo_transfer.util.Constants.EDIT_FAVOURITE
+
 
 @Composable
-fun itemCard(navController : NavController,accountName: String, accountDescripton: String, modifier: Modifier = Modifier) {
+fun itemCard(
+    navController: NavController,
+    accountName: String,
+    accountDescripton: String,
+    modifier: Modifier = Modifier
+) {
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -90,7 +94,7 @@ fun itemCard(navController : NavController,accountName: String, accountDescripto
                     .size(24.dp)
                     .clickable {
 
-                        navController.navigate(EDIT_FAVOURITE)
+//                        navController.navigate(EDIT_FAVOURITE)
 
                     },
                 tint = GrayG200
