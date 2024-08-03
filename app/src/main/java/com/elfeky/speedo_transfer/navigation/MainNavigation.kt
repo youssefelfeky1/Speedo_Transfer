@@ -34,7 +34,9 @@ import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.data.model.BottomNavigationItem
 import com.elfeky.speedo_transfer.ui.main_screen.home.HomeScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.MoreScreen
+import com.elfeky.speedo_transfer.ui.main_screen.more.components.HelpBottomSheet
 import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.FavouriteScreen
+import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.fav_components.EditFavourite
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.ProfileInformation
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.ProfileScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.profile.settings.ChangePassword
@@ -52,8 +54,10 @@ import com.elfeky.speedo_transfer.util.Constants.ACCOUNT_CONNECTING_SCREEN
 import com.elfeky.speedo_transfer.util.Constants.ADD_CARDS
 import com.elfeky.speedo_transfer.util.Constants.CHANGE_PASSWORD
 import com.elfeky.speedo_transfer.util.Constants.CONNECTING
+import com.elfeky.speedo_transfer.util.Constants.EDIT_FAVOURITE
 import com.elfeky.speedo_transfer.util.Constants.EDIT_PROFILE
 import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
+import com.elfeky.speedo_transfer.util.Constants.HELP
 import com.elfeky.speedo_transfer.util.Constants.HOME
 import com.elfeky.speedo_transfer.util.Constants.MORE
 import com.elfeky.speedo_transfer.util.Constants.MY_CARDS
@@ -128,6 +132,12 @@ fun MainNavigation(modifier: Modifier = Modifier) {
             }
             composable(EDIT_PROFILE) {
                 EditProfile(navController = navController)
+            }
+            composable(HELP){
+                HelpBottomSheet(navController = navController )
+            }
+            composable(EDIT_FAVOURITE){
+                EditFavourite(navController = navController,onSave = { _, _ -> })
             }
 
 

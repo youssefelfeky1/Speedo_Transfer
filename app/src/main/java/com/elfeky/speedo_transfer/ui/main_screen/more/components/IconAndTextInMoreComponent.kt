@@ -28,6 +28,7 @@ import com.elfeky.speedo_transfer.ui.theme.GrayG200
 import com.elfeky.speedo_transfer.ui.theme.GrayG40
 import com.elfeky.speedo_transfer.util.Constants.BANQUE_MISR_URL
 import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
+import com.elfeky.speedo_transfer.util.Constants.HELP
 import com.elfeky.speedo_transfer.util.Constants.PROFILE
 
 @Composable
@@ -50,7 +51,9 @@ fun MoreNavigationSection(navController: NavController) {
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.support_1, "Help", onClick = {
-        //  bottom sheet
+        navController.navigate(HELP){
+            navController.popBackStack()
+        }
     })
     HorizontalDivider(color = GrayG40)
 }

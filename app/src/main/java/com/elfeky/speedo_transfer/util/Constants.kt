@@ -35,4 +35,7 @@ object Constants {
     const val SETTINGS = "Settings"
     const val CHANGE_PASSWORD = "ChangePassword"
     const val EDIT_PROFILE = "EditProfile"
+
+    const val HELP = "Help"
+    const val EDIT_FAVOURITE = "Edit Favourite"
 }

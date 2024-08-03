@@ -67,7 +67,7 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
             .background(
                 brush = Brush.verticalGradient(colors = listOf(Color.White, RoseBottomGradient))
             )
-            .padding(horizontal = 16.dp, vertical = 50.dp),
+            .padding(horizontal = 16.dp, vertical = 56.dp),
         verticalArrangement = Arrangement.Top
 
     ) {

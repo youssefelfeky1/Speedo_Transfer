@@ -60,7 +60,7 @@ fun FavouriteScreen(navController: NavController, modifier: Modifier = Modifier)
 
         LazyColumn {
             items(itemsList) { item ->
-                itemCard(accountName = "Amr Nasser", accountDescripton = "Account xxxx7890")
+                itemCard(navController,accountName = "Amr Nasser", accountDescripton = "Account xxxx7890")
             }
         }
 
