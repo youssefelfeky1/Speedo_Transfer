@@ -2,6 +2,7 @@ package com.elfeky.speedo_transfer.ui.main_screen.more.favourites.fav_components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,7 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -58,17 +59,17 @@ fun EditFavourite(
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
     var showBottomSheet by remember { mutableStateOf(true) }
-    Scaffold { _ ->
+    Scaffold { contentPadding ->
         // Screen content
         FavouriteScreen(
-            navController = navController
+            navController = navController,
+            modifier = Modifier.padding(contentPadding)
         )
 
         if (showBottomSheet) {
             ModalBottomSheet(
                 onDismissRequest = {
                     showBottomSheet = false
-                    navController.navigateUp()
                 },
                 sheetState = sheetState
             ) {
@@ -94,6 +95,10 @@ private fun EditFavBtnSheet(
     onDismiss: () -> Unit,
     onSave: (String, String) -> Unit
 ) {
+    val configuration = LocalConfiguration.current
+    val screenHeight = configuration.screenHeightDp.dp
+    val bottomSheetHeight = screenHeight / 2
+
     var recipientAccount by remember {
         mutableStateOf("")
     }
@@ -101,96 +106,98 @@ private fun EditFavBtnSheet(
         mutableStateOf("")
     }
 
-
-    Column(
+    Box(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
+            .height(bottomSheetHeight)
             .background(
                 Color.White
             )
-            .padding(horizontal = 16.dp, vertical = 44.dp),
-        verticalArrangement = Arrangement.Top
+            .padding(horizontal = 16.dp, vertical = 44.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+        Column(
+            verticalArrangement = Arrangement.Top
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.edit_1),
-                contentDescription = "edit",
-                tint = RedP300
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Edit", fontSize = 20.sp, color = GrayG700)
-        }
-        Spacer(modifier = Modifier.height(28.dp))
-        Text(
-            text = "Recipient Account",
-            fontSize = 16.sp,
-            color = GrayG700,
-            textAlign = TextAlign.Start
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(
-            value = recipientAccount,
-            onValueChange = { recipientAccount = it },
-            label = { Text(text = "Enter Cardholder Account") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(8.dp)),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = RedP300,
-                unfocusedBorderColor = GrayG70,
-                unfocusedContainerColor = GrayG10,
-                focusedContainerColor = GrayG10,
-                focusedLabelColor = RedP300
-            ),
-            singleLine = true
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-        Text(
-            text = "Recipient Name",
-            fontSize = 16.sp,
-            color = GrayG700,
-            textAlign = TextAlign.Start
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(
-            value = recipientName,
-            onValueChange = { recipientName = it },
-            label = { Text(text = "Enter Cardholder Name") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(8.dp)),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = RedP300,
-                unfocusedBorderColor = GrayG70,
-                unfocusedContainerColor = GrayG10,
-                focusedContainerColor = GrayG10,
-                focusedLabelColor = RedP300
-            ),
-            singleLine = true
-        )
-        Spacer(modifier = Modifier.height(32.dp))
-        Button(
-            onClick = {
-                onSave(recipientAccount, recipientName)
-            },
-            colors = ButtonDefaults.buttonColors(containerColor = RedP300),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            shape = RoundedCornerShape(6.dp),
-            enabled = (recipientName.isNotBlank() && recipientAccount.isNotBlank())
-        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.edit_1),
+                    contentDescription = "edit",
+                    tint = RedP300
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = "Edit", fontSize = 20.sp, color = GrayG700)
+            }
+            Spacer(modifier = Modifier.height(28.dp))
             Text(
-                text = "Save",
-                color = GrayG0,
+                text = "Recipient Account",
                 fontSize = 16.sp,
+                color = GrayG700,
+                textAlign = TextAlign.Start
             )
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedTextField(
+                value = recipientAccount,
+                onValueChange = { recipientAccount = it },
+                label = { Text(text = "Enter Cardholder Account") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(8.dp)),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = RedP300,
+                    unfocusedBorderColor = GrayG70,
+                    unfocusedContainerColor = GrayG10,
+                    focusedContainerColor = GrayG10,
+                    focusedLabelColor = RedP300
+                ),
+                singleLine = true
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Recipient Name",
+                fontSize = 16.sp,
+                color = GrayG700,
+                textAlign = TextAlign.Start
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedTextField(
+                value = recipientName,
+                onValueChange = { recipientName = it },
+                label = { Text(text = "Enter Cardholder Name") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(8.dp)),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = RedP300,
+                    unfocusedBorderColor = GrayG70,
+                    unfocusedContainerColor = GrayG10,
+                    focusedContainerColor = GrayG10,
+                    focusedLabelColor = RedP300
+                ),
+                singleLine = true
+            )
+            Spacer(modifier = Modifier.height(32.dp))
+            Button(
+                onClick = {
+                    onSave(recipientAccount, recipientName)
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = RedP300),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = RoundedCornerShape(6.dp),
+                enabled = (recipientName.isNotBlank() && recipientAccount.isNotBlank())
+            ) {
+                Text(
+                    text = "Save",
+                    color = GrayG0,
+                    fontSize = 16.sp,
+                )
+            }
         }
-        Spacer(modifier = Modifier.height(36.dp))
     }
 }
 

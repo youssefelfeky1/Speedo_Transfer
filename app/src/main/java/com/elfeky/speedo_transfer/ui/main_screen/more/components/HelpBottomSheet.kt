@@ -68,11 +68,12 @@ fun HelpBottomSheet(navController: NavController) {
                 // Sheet content
 
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().height(200.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    ContactOptions()
+                       ContactOptions()
+
                 }
 
             }
@@ -105,6 +106,7 @@ fun ContactOptions() {
             context.startActivity(intent)
         }
     )
+
 
 }
 
@@ -166,5 +168,5 @@ fun ContactOption(iconRes: Int, title: String, subtitle: String, onClick: () -> 
             }
         }
     }
-    Spacer(modifier = Modifier.height(36.dp))
+
 }
