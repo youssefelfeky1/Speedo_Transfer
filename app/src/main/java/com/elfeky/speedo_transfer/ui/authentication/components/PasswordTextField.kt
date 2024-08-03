@@ -1,5 +1,7 @@
+
 package com.elfeky.speedo_transfer.ui.authentication.components
 
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -40,15 +43,21 @@ fun PasswordTextField(
     onChange: (String) -> Unit,
     isPasswordValid: (Boolean) -> Unit
 ) {
+    val context = LocalContext.current
+    val sharedPref = context.getSharedPreferences("user_data" , Context.MODE_PRIVATE)
+    val savedPassword = sharedPref.getString("password" , "")
+    var isSavedPasswordFound = (savedPassword!="")
     var tempPassword by remember {
-        mutableStateOf("")
+        mutableStateOf(savedPassword!!)
     }
+
     var tempIsPasswordShown by remember {
         mutableStateOf(isPasswordShown)
     }
     var passwordConstraintsText by remember {
         mutableStateOf("")
     }
+    isPasswordValid(isSavedPasswordFound || passwordConstraintsText == "your password is a strong password \u2714")
 
     Text(
         text = text,
@@ -68,7 +77,6 @@ fun PasswordTextField(
                     passwordConstraintsText = returnedText
                 }
             }
-            isPasswordValid(passwordConstraintsText == "your password is a strong password \u2714")
         },
         label = { Text(text = "Enter your password ", color = GreyFields) },
         maxLines = 1,

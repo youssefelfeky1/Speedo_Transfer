@@ -1,5 +1,8 @@
+
+
 package com.elfeky.speedo_transfer.ui.authentication.components
 
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -15,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
@@ -30,8 +34,11 @@ import com.elfeky.speedo_transfer.ui.theme.RedP300
 @Composable
 fun EmailTextField(modifier: Modifier = Modifier, onChange: (String) -> Unit) {
 
+    val context = LocalContext.current
+    val sharedPref = context.getSharedPreferences("user_data" , Context.MODE_PRIVATE)
+    val savedEmail = sharedPref.getString("email" , "")
     var textFieldEmail by remember {
-        mutableStateOf("")
+        mutableStateOf(savedEmail!!)
     }
 
 

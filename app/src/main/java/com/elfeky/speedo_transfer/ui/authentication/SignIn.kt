@@ -1,5 +1,8 @@
+
 package com.elfeky.speedo_transfer.ui.authentication
 
+import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,9 +25,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -44,19 +51,25 @@ import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 @Composable
 fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
 
-
+    val context = LocalContext.current
+    val sharedPref = context.getSharedPreferences("user_data" , Context.MODE_PRIVATE)
+    val savedEmail = sharedPref.getString("email" , "")
+    val savedPassword = sharedPref.getString("password" , "")
     var email by remember {
-        mutableStateOf("")
+        mutableStateOf(savedEmail!!)
     }
 
     var password by remember {
-        mutableStateOf("")
+        mutableStateOf(savedPassword!!)
     }
 
     var isPasswordShown by remember {
         mutableStateOf(false)
     }
     var validPassword by remember {
+        mutableStateOf(false)
+    }
+    var checkBoxState by remember {
         mutableStateOf(false)
     }
 
@@ -105,12 +118,24 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
             onChange = { password = it },
             isPasswordValid = { validPassword = it })
 
+        Row(
+            modifier = modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Remember me next time")
+            Checkbox(checked = checkBoxState,
+                onCheckedChange = { checkBoxState = it })
+        }
+
 
         Spacer(modifier = modifier.height(28.dp))
 
 
         Button(
             onClick = {
+                saveData(email , password , checkBoxState ,context )
+
                 navController.navigate("MainScreen") {
                     popUpTo("SignIn") {
                         inclusive = true
@@ -148,6 +173,26 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
 
     }
 
+
+}
+
+fun saveData(
+    email: String, password: String, isCheked: Boolean, context: Context
+) {
+
+    val editor = context.getSharedPreferences(
+        "user_data",
+        Context.MODE_PRIVATE
+    ).edit()
+
+    if (isCheked) {
+        editor.putString("email", email)
+        editor.putString("password", password)
+    } else {
+        editor.putString("email", "")
+        editor.putString("password", "")
+    }
+    editor.apply()
 
 }
 
