@@ -80,6 +80,7 @@ fun TransferScreen(navController: NavController, modifier: Modifier = Modifier) 
             .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState()),
     ) {
+        Spacer(modifier = Modifier.height(8.dp))
         MainTopAppBar(title = "Transfer") {
             if (stageNumber.value == 1) {
                 navController.popBackStack()

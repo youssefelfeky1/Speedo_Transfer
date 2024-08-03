@@ -14,7 +14,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import com.elfeky.speedo_transfer.MainActivity
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.navigation.MainNavigation
 
