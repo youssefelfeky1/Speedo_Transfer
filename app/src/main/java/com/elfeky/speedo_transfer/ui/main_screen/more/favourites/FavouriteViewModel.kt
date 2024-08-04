@@ -13,7 +13,7 @@ class FavouriteViewModel(app: Application) : AndroidViewModel(app) {
 
     private val favoriteRepo = FavoriteRepository(app)
 
-    fun upsertRecipient(r: Recipient) {
+    fun upsertRecipientEdit(r: Recipient) {
         viewModelScope.launch(Dispatchers.IO) {
             favoriteRepo.upsertRecipient(r)
         }
