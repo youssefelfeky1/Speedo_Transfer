@@ -71,6 +71,8 @@ fun TransactionsScreen(navController: NavController, modifier: Modifier = Modifi
                 ) {
                     item{
                         TransactionItem(onItemClick = { navController.navigate(TRANSACTION_DETAIL) })
+                        TransactionItem(onItemClick = { navController.navigate(TRANSACTION_DETAIL) })
+                        TransactionItem(onItemClick = { navController.navigate(TRANSACTION_DETAIL) })
                     }
                 }
             }

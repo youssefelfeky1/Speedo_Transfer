@@ -106,6 +106,7 @@ fun TransactionItem(onItemClick: () -> Unit, modifier: Modifier = Modifier) {
         }
 
     }
+    Spacer(modifier = Modifier.height(16.dp))
 }
 
 @Preview
