@@ -55,15 +55,16 @@ fun RememberMeEmailTextField(modifier: Modifier = Modifier, onChange: (String) -
             textFieldEmail = it
             onChange(it)
         },
-        label = { Text(text = "Enter your email address", color = GreyFields) },
+        label = { Text(text = "Enter your email address") },
         maxLines = 1,
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = RedP300,
             unfocusedBorderColor = GrayG70,
             unfocusedContainerColor = GrayG10,
             focusedContainerColor = GrayG10,
-            focusedLabelColor = RedP300
-        ),
+            focusedLabelColor = RedP300,
+            unfocusedLabelColor = GreyFields
+            ),
         shape = RoundedCornerShape(7.dp),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         modifier = Modifier.fillMaxWidth(),

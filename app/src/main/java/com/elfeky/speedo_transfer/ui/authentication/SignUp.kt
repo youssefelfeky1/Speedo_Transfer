@@ -125,9 +125,11 @@ fun SignUp(modifier: Modifier = Modifier, navController: NavController) {
                 unfocusedBorderColor = GrayG70,
                 unfocusedContainerColor = GrayG10,
                 focusedContainerColor = GrayG10,
-                focusedLabelColor = RedP300
+                focusedLabelColor = RedP300,
+                unfocusedLabelColor = GreyFields
+
             ),
-            label = { Text(text = "Enter your Full Name", color = GreyFields) },
+            label = { Text(text = "Enter your Full Name") },
             modifier = Modifier.fillMaxWidth(),
             trailingIcon = {
                 Icon(
@@ -147,7 +149,7 @@ fun SignUp(modifier: Modifier = Modifier, navController: NavController) {
             text = "Password",
             isPasswordShown = isPasswordShown,
             onChange = { password = it },
-            isPasswordValid = {validPassword =it})
+            isPasswordValid = { validPassword = it })
 
 
         Spacer(modifier = modifier.padding(12.dp))

@@ -74,15 +74,17 @@ fun PasswordTextField(
                 }
             }
         },
-        label = { Text(text = "Enter your password ", color = GreyFields) },
+        label = { Text(text = "Enter your password ") },
         maxLines = 1,
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = RedP300,
             unfocusedBorderColor = GrayG70,
             unfocusedContainerColor = GrayG10,
             focusedContainerColor = GrayG10,
-            focusedLabelColor = RedP300
-        ),
+            focusedLabelColor = RedP300,
+            unfocusedLabelColor = GreyFields
+
+            ),
         shape = RoundedCornerShape(7.dp),
         modifier = Modifier.fillMaxWidth(),
         visualTransformation = if (tempIsPasswordShown) VisualTransformation.None else PasswordVisualTransformation(),
