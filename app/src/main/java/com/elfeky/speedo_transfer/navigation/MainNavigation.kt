@@ -66,7 +66,7 @@ import com.elfeky.speedo_transfer.util.Constants.TRANSACTION_DETAIL
 import com.elfeky.speedo_transfer.util.Constants.TRANSFER
 
 @Composable
-fun MainNavigation(modifier: Modifier = Modifier) {
+fun MainNavigation(modifier: Modifier = Modifier , navHostController: NavController) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
@@ -95,7 +95,7 @@ fun MainNavigation(modifier: Modifier = Modifier) {
                 SelectCurrencyScreen(navController)
             }
             composable(MORE) {
-                MoreScreen(navController)
+                MoreScreen(navController , navHostController)
             }
             composable(FAVOURITES) {
                 FavouriteScreen(navController)

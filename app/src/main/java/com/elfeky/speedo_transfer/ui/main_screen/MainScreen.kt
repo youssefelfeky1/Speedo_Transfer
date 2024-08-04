@@ -14,17 +14,19 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.navigation.MainNavigation
 
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(modifier: Modifier = Modifier , navController: NavController) {
 
     val context = LocalContext.current
     requestNotificationPermission(context)
 
-    MainNavigation()
+    MainNavigation(navHostController = navController)
 }
 
 @SuppressLint("MissingPermission")
@@ -59,5 +61,5 @@ private fun requestNotificationPermission(context: Context) {
 @Preview(showBackground = true)
 @Composable
 private fun MainNScreenPreview() {
-    MainScreen()
+    MainScreen(navController = rememberNavController())
 }

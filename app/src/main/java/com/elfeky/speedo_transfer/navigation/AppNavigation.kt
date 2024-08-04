@@ -55,7 +55,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             OnboardingNavigation(navController = navController2, navController)
         }
         composable("MainScreen") {
-            MainScreen()
+            MainScreen(navController = navController)
         }
 
     }

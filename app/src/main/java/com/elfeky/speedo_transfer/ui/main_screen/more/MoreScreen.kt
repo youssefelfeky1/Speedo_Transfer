@@ -29,10 +29,11 @@ import com.elfeky.speedo_transfer.ui.main_screen.more.components.MoreNavigationS
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
+import com.elfeky.speedo_transfer.util.Constants.SIGN_IN
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MoreScreen(navController: NavController) {
+fun MoreScreen(navController: NavController , navHostController: NavController) {
     val showBottomSheet = remember {
         mutableStateOf(false)
     }
@@ -68,8 +69,13 @@ fun MoreScreen(navController: NavController) {
             AlertDialogLogout(
                 onDismiss = { showDialog = false },
                 onConfirm = {
+                    navHostController.navigate(SIGN_IN) {
+                        popUpTo(0) { inclusive = true }
+                        launchSingleTop = true
+                    }
                     showDialog = false
-                    // navController.navigate("SignIn")
+
+
                 }
             )
         }
@@ -102,6 +108,6 @@ fun MoreScreen(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 private fun MoreScreenPreview() {
-    MoreScreen(navController = rememberNavController())
+    MoreScreen(navController = rememberNavController() , rememberNavController())
 }
 
