@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,8 +30,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.elfeky.speedo_transfer.R
+import com.elfeky.speedo_transfer.ui.theme.GrayG100
 import com.elfeky.speedo_transfer.ui.theme.GrayG200
 import com.elfeky.speedo_transfer.ui.theme.GrayG40
+import com.elfeky.speedo_transfer.ui.theme.GrayG700
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RedP50
@@ -61,10 +64,11 @@ fun RecentTransactionsSection(onClickViewAll: () -> Unit, modifier: Modifier = M
         }
         Spacer(modifier = Modifier.height(8.dp))
         RecentTransactionSectionItem()
-        HorizontalDivider()
+        HorizontalDivider(modifier.padding(horizontal = 4.dp))
         RecentTransactionSectionItem()
-        HorizontalDivider()
+        HorizontalDivider(modifier.padding(horizontal = 4.dp))
         RecentTransactionSectionItem()
+
 
     }
 }
@@ -75,7 +79,6 @@ fun RecentTransactionSectionItem(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(74.dp)
             .clip(RoundedCornerShape(6.dp))
             .background(Color.White)
             .padding(8.dp),
@@ -93,17 +96,35 @@ fun RecentTransactionSectionItem(modifier: Modifier = Modifier) {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
-
+                Text(
+                    text = "Youssef Elfeky",
+                    color = GrayG900,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "Visa . Mater Card . 1234",
+                    color = GrayG700,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "Today 11:00 - Received",
+                    color = GrayG100,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
+
 
         Text(
             text = "$1000",
             color = RedP300,
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.align(Alignment.Top)
         )
-
     }
 }
 
