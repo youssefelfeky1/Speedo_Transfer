@@ -14,10 +14,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,6 +47,7 @@ import com.elfeky.speedo_transfer.ui.authentication.components.PasswordTextField
 import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.GreyText
+import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.ui.theme.SignUpColor
 
@@ -125,6 +129,7 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
         ) {
             Text(text = "Remember me next time")
             Checkbox(checked = checkBoxState,
+                colors = CheckboxDefaults.colors(RedP300),
                 onCheckedChange = { checkBoxState = it })
         }
 
@@ -169,6 +174,7 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
                 modifier = Modifier.clickable { navController.navigate("SignUp") }
             )
         }
+
 
 
     }
