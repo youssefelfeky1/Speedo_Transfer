@@ -1,6 +1,5 @@
-
-
 package com.elfeky.speedo_transfer.ui.authentication.components
+
 
 import android.content.Context
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,10 +31,13 @@ import com.elfeky.speedo_transfer.ui.theme.GreyFields
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 
 @Composable
-fun EmailTextField(modifier: Modifier = Modifier, onChange: (String) -> Unit) {
+fun RememberMeEmailTextField(modifier: Modifier = Modifier, onChange: (String) -> Unit) {
 
+    val context = LocalContext.current
+    val sharedPref = context.getSharedPreferences("user_data" , Context.MODE_PRIVATE)
+    val savedEmail = sharedPref.getString("email" , "")
     var textFieldEmail by remember {
-        mutableStateOf("")
+        mutableStateOf(savedEmail!!)
     }
 
 

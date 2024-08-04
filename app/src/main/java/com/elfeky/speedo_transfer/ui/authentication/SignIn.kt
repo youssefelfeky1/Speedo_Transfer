@@ -44,6 +44,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.authentication.components.EmailTextField
 import com.elfeky.speedo_transfer.ui.authentication.components.PasswordTextField
+import com.elfeky.speedo_transfer.ui.authentication.components.RememberMeEmailTextField
+import com.elfeky.speedo_transfer.ui.authentication.components.RememberMePasswordTextField
 import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
 import com.elfeky.speedo_transfer.ui.theme.GreyText
@@ -111,12 +113,12 @@ fun SignIn(modifier: Modifier = Modifier, navController: NavController) {
         Spacer(modifier = modifier.height(56.dp))
 
 
-        EmailTextField {
+        RememberMeEmailTextField {
             email = it
         }
         Spacer(modifier = modifier.height(4.dp))
 
-        PasswordTextField(
+        RememberMePasswordTextField(
             text = "Password",
             isPasswordShown = isPasswordShown,
             onChange = { password = it },

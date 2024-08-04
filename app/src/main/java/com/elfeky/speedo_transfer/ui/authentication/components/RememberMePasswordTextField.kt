@@ -1,3 +1,4 @@
+
 package com.elfeky.speedo_transfer.ui.authentication.components
 
 import android.content.Context
@@ -34,7 +35,7 @@ import com.elfeky.speedo_transfer.ui.theme.RedP300
 
 
 @Composable
-fun PasswordTextField(
+fun RememberMePasswordTextField(
 
     modifier: Modifier = Modifier,
     text: String,
@@ -43,8 +44,11 @@ fun PasswordTextField(
     isPasswordValid: (Boolean) -> Unit
 ) {
     val context = LocalContext.current
+    val sharedPref = context.getSharedPreferences("user_data" , Context.MODE_PRIVATE)
+    val savedPassword = sharedPref.getString("password" , "")
+    var isSavedPasswordFound = (savedPassword!="")
     var tempPassword by remember {
-        mutableStateOf("")
+        mutableStateOf(savedPassword!!)
     }
 
     var tempIsPasswordShown by remember {
@@ -53,7 +57,7 @@ fun PasswordTextField(
     var passwordConstraintsText by remember {
         mutableStateOf("")
     }
-    isPasswordValid(passwordConstraintsText == "your password is a strong password \u2714")
+    isPasswordValid(isSavedPasswordFound || passwordConstraintsText == "your password is a strong password \u2714")
 
     Text(
         text = text,
@@ -108,25 +112,3 @@ fun PasswordTextField(
 }
 
 
-fun passwordConstraints(password: String, onClick: (String) -> Unit) {
-    val lowercaseLetter = Regex("[a-z]")
-    val uppercaseLetter = Regex("[A-Z]")
-    val special = Regex("[!\"#\$%&'()*+,-./:;<=>?@\\]^_`{|}~]")
-
-
-    val hasLowercaseLetter = lowercaseLetter.containsMatchIn(password)
-    val hasUppercaseLetter = uppercaseLetter.containsMatchIn(password)
-    val hasSpecial = special.containsMatchIn(password)
-    if (password.isBlank())
-        onClick("your password must not be empty")
-    else if (password.length < 6)
-        onClick("your password must be at least 6 characters long ")
-    else if (!hasLowercaseLetter)
-        onClick("your password must have at least 1 lowercase letter")
-    else if (!hasUppercaseLetter)
-        onClick("your password must have at least 1 uppercase letter")
-    else if (!hasSpecial)
-        onClick("your password must have at least 1 special character")
-    else
-        onClick("your password is a strong password \u2714")
-}
