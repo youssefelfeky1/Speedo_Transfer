@@ -25,6 +25,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.GrayG10
@@ -59,7 +60,8 @@ fun PasswordTextField(
         text = text,
         color = BlackFieldColor,
         textAlign = TextAlign.Start,
-        modifier = modifier.padding(vertical = 6.dp)
+        modifier = modifier.padding(vertical = 6.dp),
+        fontSize = 16.sp
 
 
     )

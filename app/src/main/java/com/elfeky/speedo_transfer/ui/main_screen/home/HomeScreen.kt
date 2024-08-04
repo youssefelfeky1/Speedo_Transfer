@@ -1,12 +1,15 @@
 package com.elfeky.speedo_transfer.ui.main_screen.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +37,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
                 )
             )
             .padding(16.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         Spacer(modifier = Modifier.height(64.dp))
         WelcomeSection(fullName = "Youssef Elfeky", navController = navController)
@@ -43,6 +47,8 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
         ServicesSection()
         Spacer(modifier = Modifier.height(16.dp))
         RecentTransactionsSection(onClickViewAll = { navController.navigate(TRANSACTIONS) })
+        Spacer(modifier = Modifier.height(124.dp))
+
     }
 }
 

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -44,10 +45,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -72,7 +75,6 @@ import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
 @Composable
 fun FavouriteScreen(
     navController: NavController,
-    modifier: Modifier = Modifier,
     viewModel: FavouriteViewModel = viewModel()
 ) {
     val favoriteRecipients by viewModel.selectAllRecipients().collectAsState(initial = emptyList())
@@ -316,16 +318,17 @@ fun EditFavBtnSheet(
             }
             Spacer(modifier = Modifier.height(28.dp))
             Text(
-                text = "Recipient Account",
+                text = "Recipient Name",
                 fontSize = 16.sp,
                 color = GrayG700,
                 textAlign = TextAlign.Start
             )
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
-                value = recipientAccount.value,
-                onValueChange = { recipientAccount.value = it },
-                label = { Text(text = "Enter Recipient Account") },
+                value = recipientName.value,
+                onValueChange = { recipientName.value = it },
+                label = { Text(text = "Enter Recipient Name") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(8.dp)),
@@ -340,16 +343,21 @@ fun EditFavBtnSheet(
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = "Recipient Name",
+                text = "Recipient Account",
                 fontSize = 16.sp,
                 color = GrayG700,
                 textAlign = TextAlign.Start
             )
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
-                value = recipientName.value,
-                onValueChange = { recipientName.value = it },
-                label = { Text(text = "Enter Recipient Name") },
+                value = recipientAccount.value,
+                onValueChange = {
+                    if (it.isDigitsOnly()) {
+                        recipientAccount.value = it
+                    }
+                },
+                label = { Text(text = "Enter Recipient Account") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(8.dp)),

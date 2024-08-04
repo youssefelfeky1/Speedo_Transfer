@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -133,6 +134,7 @@ fun EditProfile(modifier: Modifier = Modifier , navController: NavController) {
             shape = RoundedCornerShape(7.dp),
             modifier = modifier
                 .fillMaxWidth()
+                .height(50.dp)
                 .padding(bottom = 8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = DarkRed),
             enabled = name.isNotBlank() && email.isNotBlank() && date.isNotBlank() && countryName.isNotBlank()

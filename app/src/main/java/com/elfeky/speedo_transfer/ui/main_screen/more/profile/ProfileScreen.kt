@@ -31,6 +31,7 @@ import com.elfeky.speedo_transfer.ui.main_screen.more.profile.components.TopAppB
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.BlackText
 import com.elfeky.speedo_transfer.ui.theme.YellowTopGradient
+import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
 
 @Composable
 fun ProfileScreen(modifier: Modifier = Modifier, navController: NavController) {

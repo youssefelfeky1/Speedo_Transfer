@@ -30,6 +30,7 @@ import com.elfeky.speedo_transfer.ui.theme.GreyText
 import com.elfeky.speedo_transfer.ui.theme.RedP50
 import com.elfeky.speedo_transfer.util.Constants.CHANGE_PASSWORD
 import com.elfeky.speedo_transfer.util.Constants.EDIT_PROFILE
+import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
 import com.elfeky.speedo_transfer.util.Constants.PROFILE_INFO
 import com.elfeky.speedo_transfer.util.Constants.SETTINGS
 
@@ -55,6 +56,8 @@ fun ProfileItem(
                     navController.navigate(CHANGE_PASSWORD)
                 else if (primaryText == "Edit Profile")
                     navController.navigate(EDIT_PROFILE)
+                else if (primaryText == "My Favourite list")
+                    navController.navigate(FAVOURITES)
             },
         verticalAlignment = Alignment.CenterVertically
     ) {
