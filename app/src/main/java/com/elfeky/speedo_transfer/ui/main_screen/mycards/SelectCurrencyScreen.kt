@@ -42,6 +42,7 @@ import com.elfeky.speedo_transfer.ui.theme.GrayG200
 import com.elfeky.speedo_transfer.ui.theme.GrayG40
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RedP50
+import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.util.Constants.ADD_CARDS
 
 @Composable
@@ -58,7 +59,7 @@ fun SelectCurrencyScreen(
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         Color.White,
-                        Color(0xFFFFEAEE)
+                        RoseBottomGradient
                     )
                 )
             )

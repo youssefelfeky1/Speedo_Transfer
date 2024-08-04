@@ -1,4 +1,4 @@
-package com.elfeky.speedo_transfer.ui.main_screen.transfer
+package com.elfeky.speedo_transfer.ui.main_screen.more.favourites
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -9,13 +9,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class TransferViewModel(app: Application) : AndroidViewModel(app) {
+class FavouriteViewModel(app: Application) : AndroidViewModel(app) {
 
     private val favoriteRepo = FavoriteRepository(app)
 
-    fun upsertRecipient(r: Recipient) {
+    fun upsertRecipientEdit(r: Recipient) {
         viewModelScope.launch(Dispatchers.IO) {
             favoriteRepo.upsertRecipient(r)
+        }
+    }
+
+    fun deleteRecipient(r: Recipient) {
+        viewModelScope.launch(Dispatchers.IO) {
+            favoriteRepo.deleteRecipient(r)
         }
     }
 

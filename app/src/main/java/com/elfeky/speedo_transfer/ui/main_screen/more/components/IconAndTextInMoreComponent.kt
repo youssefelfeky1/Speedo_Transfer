@@ -10,11 +10,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -28,11 +35,12 @@ import com.elfeky.speedo_transfer.ui.theme.GrayG200
 import com.elfeky.speedo_transfer.ui.theme.GrayG40
 import com.elfeky.speedo_transfer.util.Constants.BANQUE_MISR_URL
 import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
-import com.elfeky.speedo_transfer.util.Constants.HELP
 import com.elfeky.speedo_transfer.util.Constants.PROFILE
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MoreNavigationSection(navController: NavController) {
+fun MoreNavigationSection(navController: NavController , onHelpClick: () -> Unit) {
+
     val context = LocalContext.current
     IconAndTextInMoreComponent(R.drawable.website_1, "Transfer From Website", onClick = {
 
@@ -47,19 +55,17 @@ fun MoreNavigationSection(navController: NavController) {
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.user, "Profile", onClick = {
-       navController.navigate(PROFILE)
+        navController.navigate(PROFILE)
     })
     HorizontalDivider(color = GrayG40)
     IconAndTextInMoreComponent(R.drawable.support_1, "Help", onClick = {
-        navController.navigate(HELP){
-            navController.popBackStack()
-        }
+        onHelpClick()
     })
     HorizontalDivider(color = GrayG40)
 }
 
 @Composable
-fun IconAndTextInMoreComponent(@DrawableRes icon: Int, text: String,  onClick: () -> Unit) {
+fun IconAndTextInMoreComponent(@DrawableRes icon: Int, text: String, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

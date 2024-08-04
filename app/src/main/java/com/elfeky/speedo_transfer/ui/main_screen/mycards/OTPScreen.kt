@@ -32,6 +32,7 @@ import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.components.OtpTextField
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.RedP300
+import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.util.Constants.ACCOUNT_CONNECTING_SCREEN
 
 
@@ -48,7 +49,7 @@ fun OTPScreen(
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         Color.White,
-                        Color(0xFFFFEAEE)
+                        RoseBottomGradient
                     )
                 )
             )

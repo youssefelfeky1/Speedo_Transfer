@@ -32,6 +32,7 @@ import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RedP75
+import com.elfeky.speedo_transfer.ui.theme.RoseBottomGradient
 import com.elfeky.speedo_transfer.util.Constants.ADD_CARDS
 import com.elfeky.speedo_transfer.util.Constants.OTP
 import kotlinx.coroutines.delay
@@ -67,7 +68,7 @@ fun ConnectionScreen(
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         Color.White,
-                        Color(0xFFFFEAEE)
+                        RoseBottomGradient
                     )
                 )
             )
