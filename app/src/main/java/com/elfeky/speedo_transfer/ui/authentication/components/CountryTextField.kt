@@ -1,8 +1,11 @@
 package com.elfeky.speedo_transfer.ui.authentication.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,6 +34,8 @@ import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.BlackFieldColor
 import com.elfeky.speedo_transfer.ui.theme.GrayG10
 import com.elfeky.speedo_transfer.ui.theme.GreyFields
+import com.elfeky.speedo_transfer.ui.theme.RedP300
+import com.elfeky.speedo_transfer.ui.theme.RedP50
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +55,10 @@ fun CountryTextField(modifier: Modifier = Modifier, onclick: (String) -> Unit) {
         onValueChange = { countryName = it },
         enabled = false,
         readOnly = true,
-        colors = OutlinedTextFieldDefaults.colors(disabledBorderColor = GreyFields , disabledContainerColor = GrayG10),
+        colors = OutlinedTextFieldDefaults.colors(
+            disabledBorderColor = GreyFields,
+            disabledContainerColor = GrayG10
+        ),
         label = { Text(text = "Select your country", color = GreyFields) },
         modifier = modifier
             .fillMaxWidth()
@@ -269,6 +277,8 @@ fun CountryTextField(modifier: Modifier = Modifier, onclick: (String) -> Unit) {
         "🇿🇼 Zimbabwe"
     )
 
+    var selectedCountry by remember { mutableStateOf<Int?>(null) }
+
 
 
     if (isBottomSheetVisible) {
@@ -282,10 +292,14 @@ fun CountryTextField(modifier: Modifier = Modifier, onclick: (String) -> Unit) {
                         .padding(16.dp)
                 ) {
                     items(countries) { country ->
-                        CountryItem(country) {
+                        CountryItem(
+                            country = country,
+                            isSelected = selectedCountry == countries.indexOf(country),
+                            onSelect = { selectedCountry = countries.indexOf(country) }
+                        ) {
                             onclick(it)
                             countryName = it
-                            isBottomSheetVisible = false
+
                         }
                     }
 
@@ -303,18 +317,38 @@ fun CountryTextField(modifier: Modifier = Modifier, onclick: (String) -> Unit) {
 
 
 @Composable
-fun CountryItem(country: String, onCardClick: (String) -> Unit) {
+fun CountryItem(
+    country: String,
+    isSelected: Boolean,
+    onSelect: () -> Unit,
+    onCardClick: (String) -> Unit,
+
+    ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .height(56.dp)
             .padding(vertical = 8.dp)
-            .clickable { onCardClick(country) },
+            .background(if (isSelected) RedP50 else Color.Transparent)
+            .clickable {
+                onCardClick(country)
+                onSelect()
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = country,
             style = MaterialTheme.typography.bodyLarge
         )
+        Spacer(modifier = Modifier.weight(1f))
+        if (isSelected) {
+            Icon(
+                painter = painterResource(id = R.drawable.checkcorrect),
+                contentDescription = "Selected",
+                tint = RedP300,
+                modifier = Modifier
+            )
+        }
     }
 }
 
