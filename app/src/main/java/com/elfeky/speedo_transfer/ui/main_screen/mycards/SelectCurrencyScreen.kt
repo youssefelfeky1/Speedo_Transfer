@@ -74,7 +74,7 @@ fun SelectCurrencyScreen(
         LazyColumn(
             modifier = modifier.padding(horizontal = 16.dp)
         ) {
-            items(6) { index ->
+            items(3) { index ->
                 CountrySelectedItem(
                     countryName = "United States",
                     isSelected = selectedCountry == index,
@@ -139,7 +139,7 @@ private fun CountrySelectedItem(
                 painter = painterResource(id = R.drawable.checkcorrect),
                 contentDescription = "Selected",
                 tint = RedP300,
-                modifier = Modifier
+                modifier = Modifier.padding(end= 6.dp)
             )
         }
     }

@@ -179,7 +179,7 @@ fun AmountSection(
             color = if (recipientAccountShouldCorrect) RedP300 else Color.Transparent,
         )
 
-        Spacer(modifier = Modifier.height(28.dp))
+        Spacer(modifier = Modifier.height(18.dp))
 
         Button(
             onClick = { onContinue() },
@@ -197,6 +197,8 @@ fun AmountSection(
                 fontSize = 16.sp,
             )
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
     }
 }
