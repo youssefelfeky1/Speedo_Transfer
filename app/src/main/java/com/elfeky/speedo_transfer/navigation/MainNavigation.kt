@@ -32,6 +32,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.data.model.BottomNavigationItem
+import com.elfeky.speedo_transfer.ui.common.NotificationScreen
 import com.elfeky.speedo_transfer.ui.main_screen.home.HomeScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.MoreScreen
 import com.elfeky.speedo_transfer.ui.main_screen.more.favourites.FavouriteScreen
@@ -57,6 +58,7 @@ import com.elfeky.speedo_transfer.util.Constants.FAVOURITES
 import com.elfeky.speedo_transfer.util.Constants.HOME
 import com.elfeky.speedo_transfer.util.Constants.MORE
 import com.elfeky.speedo_transfer.util.Constants.MY_CARDS
+import com.elfeky.speedo_transfer.util.Constants.NOTIFICATION_SCREEN
 import com.elfeky.speedo_transfer.util.Constants.OTP
 import com.elfeky.speedo_transfer.util.Constants.PROFILE
 import com.elfeky.speedo_transfer.util.Constants.PROFILE_INFO
@@ -100,7 +102,6 @@ fun MainNavigation(modifier: Modifier = Modifier , navHostController: NavControl
             composable(FAVOURITES) {
                 FavouriteScreen(navController)
             }
-
             composable(PROFILE) {
                 ProfileScreen(navController = navController)
             }
@@ -128,6 +129,9 @@ fun MainNavigation(modifier: Modifier = Modifier , navHostController: NavControl
             }
             composable(EDIT_PROFILE) {
                 EditProfile(navController = navController)
+            }
+            composable(NOTIFICATION_SCREEN){
+                NotificationScreen(navController = navController)
             }
 
 

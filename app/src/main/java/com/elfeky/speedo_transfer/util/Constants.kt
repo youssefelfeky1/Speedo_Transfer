@@ -37,5 +37,6 @@ object Constants {
     const val EDIT_PROFILE = "EditProfile"
 
 
+    const val NOTIFICATION_SCREEN = "Notification Screen"
 
 }

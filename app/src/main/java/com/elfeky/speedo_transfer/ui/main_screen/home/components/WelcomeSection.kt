@@ -1,6 +1,7 @@
 package com.elfeky.speedo_transfer.ui.main_screen.home.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.DarkRed
+import com.elfeky.speedo_transfer.util.Constants.NOTIFICATION_SCREEN
 
 @Composable
 fun WelcomeSection(
@@ -44,7 +46,7 @@ fun WelcomeSection(
             contentDescription = "Notification",
             modifier = Modifier
                 .size(32.dp)
-//                .clickable { navController.navigate("notifications") }
+                .clickable { navController.navigate(NOTIFICATION_SCREEN) }
         )
 
     }
