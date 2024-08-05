@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.text.isDigitsOnly
 import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.data.model.Recipient
+import com.elfeky.speedo_transfer.ui.common.CurrencyConverter
 import com.elfeky.speedo_transfer.ui.theme.GrayG0
 import com.elfeky.speedo_transfer.ui.theme.GrayG10
 import com.elfeky.speedo_transfer.ui.theme.GrayG100
@@ -77,28 +78,15 @@ fun AmountSection(
             color = GrayG900
         )
         Spacer(modifier = Modifier.height(24.dp))
-
-        OutlinedTextField(
-            value = amount.value,
-            onValueChange = {
-                if (it.isDigitsOnly()) {
-                    amount.value = it
-                }
-            },
-            maxLines = 1,
-            label = { Text(text = "Enter Amount") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = RedP300,
-                unfocusedBorderColor = GrayG70,
-                unfocusedContainerColor = GrayG10,
-                focusedContainerColor = GrayG10,
-                focusedLabelColor = RedP300
-            ),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(8.dp)),
+        // try
+        Text(
+            text = "Choose Currency",
+            fontSize = 16.sp,
+            modifier = Modifier.padding(bottom = 16.dp)
         )
+
+        CurrencyConverter(amount = amount)
+        //try
         visible = (if (amount.value != "") (amount.value.toInt() > 5000) else false)
         Spacer(modifier = Modifier.height(8.dp))
         Text(

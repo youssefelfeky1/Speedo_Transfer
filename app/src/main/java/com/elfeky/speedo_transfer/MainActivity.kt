@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
         val channel = NotificationChannel("1", name, importance)
         channel.description = "Successful Transactions"
 
+
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)

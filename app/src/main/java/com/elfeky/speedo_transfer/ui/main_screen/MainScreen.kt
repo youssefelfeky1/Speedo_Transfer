@@ -21,7 +21,7 @@ import com.elfeky.speedo_transfer.navigation.MainNavigation
 
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier , navController: NavController) {
+fun MainScreen(modifier: Modifier = Modifier, navController: NavController) {
 
     val context = LocalContext.current
     requestNotificationPermission(context)
@@ -36,6 +36,7 @@ fun sendNotification(context: Context, title: String, text: String) {
         .setContentTitle(title)
         .setContentText(text)
         .setAutoCancel(true)
+
 
     NotificationManagerCompat.from(context).notify(99, builder.build())
 }
