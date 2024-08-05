@@ -22,6 +22,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -53,6 +54,8 @@ fun CurrencyConverter(
 
     var amountInEgp by remember { mutableStateOf("0.00") }
 
+    val conversionRate = 48.4
+
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
@@ -69,13 +72,15 @@ fun CurrencyConverter(
             Text(text = "You Send", fontSize = 14.sp)
             Spacer(modifier = Modifier.height(16.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                CurrencyDropDown("USD", R.drawable.united_states)
+                CurrencyDropDown("EGP", R.drawable.egypt)
                 Spacer(modifier = Modifier.weight(1f))
                 OutlinedTextField(
                     value = amount.value,
                     onValueChange = {
                         if (it.isDigitsOnly()) {
                             amount.value = it
+                            val usdValue = it.toDoubleOrNull() ?: 0.0
+                            amountInEgp = (usdValue * conversionRate).toString()
                         }
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
@@ -86,10 +91,10 @@ fun CurrencyConverter(
                     textStyle = TextStyle(
                         fontSize = 20.sp, fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Center
-                    )
+                    ),
+                    colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = RedP300)
                 )
             }
-
             Spacer(modifier = Modifier.height(16.dp))
             HorizontalDivider(
                 color = GrayG40,
@@ -98,28 +103,33 @@ fun CurrencyConverter(
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = "Recipient Gets", fontSize = 14.sp)
             Spacer(modifier = Modifier.height(16.dp))
-
             Row(verticalAlignment = Alignment.CenterVertically) {
-                CurrencyDropDown("EGP", R.drawable.egypt)
+                CurrencyDropDown("USD", R.drawable.united_states)
                 Spacer(modifier = Modifier.weight(1f))
                 OutlinedTextField(
                     value = amountInEgp,
                     onValueChange = {
                         if (it.isDigitsOnly()) {
                             amountInEgp = it
+                            val egpValue = it.toDoubleOrNull() ?: 0.0
+                            amount.value = (egpValue / conversionRate).toString()
                         }
                     },
+                    readOnly = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
                     maxLines = 1,
                     modifier = Modifier
                         .width(160.dp)
                         .height(52.dp),
+                    colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = RedP300),
                     textStyle = TextStyle(
                         fontSize = 20.sp, fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Center
                     )
                 )
             }
+
+
         }
     }
 }
@@ -140,7 +150,7 @@ fun CurrencyDropDown(selectedCurrency: String, @DrawableRes icon: Int) {
                 .clickable { expanded = true }, verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
 
-            ) {
+        ) {
             Row(
                 modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start

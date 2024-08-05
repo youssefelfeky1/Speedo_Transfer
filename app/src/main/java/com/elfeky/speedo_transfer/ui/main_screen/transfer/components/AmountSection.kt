@@ -70,6 +70,9 @@ fun AmountSection(
     var visible by remember {
         mutableStateOf(false)
     }
+    var recipientAccountShouldCorrect by remember {
+        mutableStateOf(false)
+    }
     Column {
         Text(
             text = "How much are you sending?",
@@ -167,8 +170,16 @@ fun AmountSection(
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword)
         )
+        Spacer(modifier = Modifier.height(4.dp))
 
-        Spacer(modifier = Modifier.height(32.dp))
+        recipientAccountShouldCorrect =
+            if (recipientAccount.value != "") (recipientAccount.value.length < 5) else false
+        Text(
+            text = "Recipient Account Number should be at least 5 digits",
+            color = if (recipientAccountShouldCorrect) RedP300 else Color.Transparent,
+        )
+
+        Spacer(modifier = Modifier.height(28.dp))
 
         Button(
             onClick = { onContinue() },
@@ -178,7 +189,7 @@ fun AmountSection(
                 .height(50.dp),
             shape = RoundedCornerShape(6.dp),
             enabled = (amount.value.isNotBlank() && recipientName.value.isNotBlank() && recipientAccount.value.isNotBlank()
-                    && (!visible))
+                    && (!visible) && (!recipientAccountShouldCorrect))
         ) {
             Text(
                 text = "Continue",
