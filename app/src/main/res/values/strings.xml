@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Speedo Transfer</string>
+    <string name="bank_card_otp">Bank Card OTP</string>
+    <string name="account_connected_successfully">Account Connected Successfully!</string>
+    <string name="feel_free_to_connect_another_account_at_the_same_time">Feel free to connect another account at the same time.</string>
+    <string name="connect_another_account">Connect another account</string>
+    <string name="sign_on_your_speedo_transfer_account">Sign on your Speedo Transfer \n Account</string>
+    <string name="add_card">Add Card</string>
+    <string name="speedo_transfer">Speedo \n Transfer</string>
+    <string name="connecting_to_speedo_transfer_credit_card">Connecting to Speedo Transfer Credit card</string>
+    <string name="enter_the_digits_verification_code_send_to_email_gmail_com">Enter the digits verification code send to Email@gmail.com</string>
+    <string name="select_currency">Select Currency</string>
 </resources>

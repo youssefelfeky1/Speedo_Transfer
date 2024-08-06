@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -61,7 +62,7 @@ fun AccountConnectingScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        MainTopAppBar(title = "Bank Card OTP") {
+        MainTopAppBar(title = stringResource(R.string.bank_card_otp)) {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(50.dp))
@@ -73,7 +74,7 @@ fun AccountConnectingScreen(
         )
         Spacer(modifier = Modifier.height(50.dp))
         Text(
-            text = "Account Connected Successfully!",
+            text = stringResource(R.string.account_connected_successfully),
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
             fontSize = 32.sp,
@@ -82,7 +83,7 @@ fun AccountConnectingScreen(
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "Feel free to connect another account at the same time.",
+            text = stringResource(R.string.feel_free_to_connect_another_account_at_the_same_time),
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
             color = Color.Gray
@@ -97,7 +98,7 @@ fun AccountConnectingScreen(
             shape = RoundedCornerShape(size = 8.dp)
         ) {
             Text(
-                text = "Connect another account", fontSize = 16.sp
+                text = stringResource(R.string.connect_another_account), fontSize = 16.sp
             )
         }
         Spacer(modifier = Modifier.height(16.dp))

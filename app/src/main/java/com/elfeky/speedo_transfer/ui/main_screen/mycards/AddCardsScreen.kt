@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.GrayG0
 import com.elfeky.speedo_transfer.ui.theme.GrayG10
@@ -69,7 +71,7 @@ fun AddCardsScreen(
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.Top
     ) {
-        MainTopAppBar(title = "Add Card") {
+        MainTopAppBar(title = stringResource(R.string.add_card)) {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(32.dp))
@@ -78,7 +80,7 @@ fun AddCardsScreen(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Sign on your Speedo Transfer \n Account",
+                text = stringResource(R.string.sign_on_your_speedo_transfer_account),
                 style = MaterialTheme.typography.titleMedium,
                 color = GrayG900,
                 fontSize = 20.sp,

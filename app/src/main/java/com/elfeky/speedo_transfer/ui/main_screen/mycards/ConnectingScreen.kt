@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.theme.GrayG900
 import com.elfeky.speedo_transfer.ui.theme.RedP300
 import com.elfeky.speedo_transfer.ui.theme.RedP75
@@ -87,7 +89,7 @@ fun ConnectionScreen(
                 trackColor = RedP75,
             )
             Text(
-                text = "Speedo \n Transfer",
+                text = stringResource(R.string.speedo_transfer),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 32.sp,
@@ -97,7 +99,7 @@ fun ConnectionScreen(
 
         Spacer(modifier = Modifier.height(54.dp))
         Text(
-            text = "Connecting to Speedo Transfer Credit card",
+            text = stringResource(R.string.connecting_to_speedo_transfer_credit_card),
             fontSize = 22.sp,
             fontWeight = FontWeight.SemiBold,
             color = GrayG900,

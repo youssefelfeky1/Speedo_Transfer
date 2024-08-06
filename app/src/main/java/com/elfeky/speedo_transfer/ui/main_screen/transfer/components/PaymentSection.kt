@@ -19,6 +19,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
@@ -55,12 +56,14 @@ fun PaymentSection(
     viewModel: TransferViewModel = viewModel()
 ) {
     val context = LocalContext.current
+    LaunchedEffect(Unit) {
+        sendNotification(
+            context,
+            "Successful Transaction",
+            "You have sent ${amount.value} £ to ${recipientName.value}"
+        )
+    }
 
-    sendNotification(
-        context,
-        "Successful Transaction",
-        "You have sent ${amount.value} £ to ${recipientName.value}"
-    )
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,

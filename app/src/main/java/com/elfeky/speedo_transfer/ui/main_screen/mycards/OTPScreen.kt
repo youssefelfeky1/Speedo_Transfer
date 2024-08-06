@@ -23,12 +23,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.elfeky.speedo_transfer.R
 import com.elfeky.speedo_transfer.ui.main_screen.mycards.components.OtpTextField
 import com.elfeky.speedo_transfer.ui.main_screen.transfer.MainTopAppBar
 import com.elfeky.speedo_transfer.ui.theme.RedP300
@@ -64,7 +66,7 @@ fun OTPScreen(
 
         Spacer(modifier = Modifier.height(45.dp))
         Text(
-            text = "Enter the digits verification code send to Email@gmail.com",
+            text = stringResource(R.string.enter_the_digits_verification_code_send_to_email_gmail_com),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
             color = Color.Gray,

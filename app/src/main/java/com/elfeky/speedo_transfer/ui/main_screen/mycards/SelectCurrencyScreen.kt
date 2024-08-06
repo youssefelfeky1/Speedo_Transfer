@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -63,10 +64,10 @@ fun SelectCurrencyScreen(
                     )
                 )
             )
-            .padding(start = 16.dp, end = 16.dp, bottom = 60.dp ),
+            .padding(start = 16.dp, end = 16.dp, bottom = 60.dp),
         verticalArrangement = Arrangement.Top
     ) {
-        MainTopAppBar(title = "Select Currency") {
+        MainTopAppBar(title = stringResource(R.string.select_currency)) {
             navController.popBackStack()
         }
         Spacer(modifier = Modifier.height(42.dp))
@@ -74,7 +75,7 @@ fun SelectCurrencyScreen(
         LazyColumn(
             modifier = modifier.padding(horizontal = 16.dp)
         ) {
-            items(3) { index ->
+            items(6) { index ->
                 CountrySelectedItem(
                     countryName = "United States",
                     isSelected = selectedCountry == index,
