@@ -80,7 +80,7 @@ fun CurrencyConverter(
                         if (it.isDigitsOnly()) {
                             amount.value = it
                             val usdValue = it.toDoubleOrNull() ?: 0.0
-                            amountInEgp = (usdValue * conversionRate).toString()
+                            amountInEgp = (usdValue / conversionRate).toString()
                         }
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
@@ -112,7 +112,7 @@ fun CurrencyConverter(
                         if (it.isDigitsOnly()) {
                             amountInEgp = it
                             val egpValue = it.toDoubleOrNull() ?: 0.0
-                            amount.value = (egpValue / conversionRate).toString()
+                            amount.value = (egpValue * conversionRate).toString()
                         }
                     },
                     readOnly = true,

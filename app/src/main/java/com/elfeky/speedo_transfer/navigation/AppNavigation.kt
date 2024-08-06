@@ -22,6 +22,9 @@ import com.elfeky.speedo_transfer.util.Constants.SPLASH_SCREEN
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+
+
+
     NavHost(navController = navController, startDestination = SPLASH_SCREEN) {
         composable(SPLASH_SCREEN) {
             SplashScreen(navController = navController)

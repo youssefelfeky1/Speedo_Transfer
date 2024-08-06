@@ -1,7 +1,7 @@
 package com.elfeky.speedo_transfer.util
 
 object Constants {
-    const val BASE_URL = ""
+    const val BASE_URL = "https://money-transfer-430a47bbe633.herokuapp.com/api/v1/"
     const val BANQUE_MISR_URL = "https://www.banquemisr.com/"
 
 
